@@ -1,4 +1,4 @@
-package com.example.apipeliculas.utils;
+package com.example.apipeliculas.interfaces;
 
 import com.example.apipeliculas.models.MovieModel;
 import com.example.apipeliculas.response.MovieSearchResponse;

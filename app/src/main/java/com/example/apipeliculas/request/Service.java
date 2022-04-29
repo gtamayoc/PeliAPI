@@ -1,7 +1,7 @@
 package com.example.apipeliculas.request;
 
 import com.example.apipeliculas.utils.Credenciales;
-import com.example.apipeliculas.utils.MovieApi;
+import com.example.apipeliculas.interfaces.MovieApi;
 
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
