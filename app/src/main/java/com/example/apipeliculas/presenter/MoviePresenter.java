@@ -7,6 +7,7 @@ import com.example.apipeliculas.models.MovieModel;
 import com.example.apipeliculas.models.MoviesModel;
 import com.example.apipeliculas.response.MovieSearchResponse;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,7 +28,12 @@ public class MoviePresenter implements MovieInterface.presenter {
 
     @Override
     public void obtenerPeliculas(String nombre, String page) {
-        model.descargarPeliculas(nombre, page);
+        this.model.descargarPeliculas(nombre, page);
+    }
+
+    @Override
+    public void obtenerPeliculasId(int id) {
+        this.model.descargarPeliculasId(id);
     }
 
     @Override
@@ -57,6 +63,37 @@ public class MoviePresenter implements MovieInterface.presenter {
                 Log.e("TAG2-ERRO2", "the response " + t.getMessage());
             }
         });
+    }
+
+    @Override
+    public void mostrarPeliculasId(Call<MovieModel> responseCall) {
+
+        responseCall.enqueue(new Callback<MovieModel>() {
+            @Override
+            public void onResponse(Call<MovieModel> call, Response<MovieModel> response) {
+                if (response.code() == 200) {
+                    MovieModel movie = response.body();
+                    Log.v("TAG", "the response : " + movie.getTitle());
+                    try {
+                        view.mostrarPeliculasId(movie);
+                    } catch (Exception e) {
+
+                    }
+                } else {
+                    try {
+                        Log.v("TAG", "Error : " + response.errorBody().string());
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<MovieModel> call, Throwable t) {
+
+            }
+        });
+
     }
 
 }

@@ -11,15 +11,19 @@ public interface MovieInterface {
 
     interface view{
         void mostrarPeliculas(List<MovieModel> movies);
+        void mostrarPeliculasId(MovieModel movies);
         void errorCarga(String error);
     }
     interface presenter{
         void obtenerPeliculas(String nombre, String page);
+        void obtenerPeliculasId(int id);
         void mostrarPeliculas(Call<MovieSearchResponse> responseCall);
+        void mostrarPeliculasId(Call<MovieModel> responseCall);
     }
 
     interface model{
         void descargarPeliculas(String nombre, String page);
+        void descargarPeliculasId(int id);
     }
 
 }

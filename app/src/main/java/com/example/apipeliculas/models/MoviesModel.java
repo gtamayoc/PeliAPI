@@ -28,5 +28,12 @@ public class MoviesModel implements MovieInterface.model {
 
         this.presenter.mostrarPeliculas(responseCall);
     }
-    
+
+    @Override
+    public void descargarPeliculasId(int id) {
+        MovieApi movieApi = Service.getMovieApi();
+        Call<MovieModel> responseCall = movieApi.getMovie(id, Credenciales.API_KEY);
+        this.presenter.mostrarPeliculasId(responseCall);
+    }
+
 }
