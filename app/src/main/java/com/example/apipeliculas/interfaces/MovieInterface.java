@@ -12,6 +12,7 @@ public interface MovieInterface {
     interface view{
         void mostrarPeliculas(List<MovieModel> movies);
         void mostrarPeliculasId(MovieModel movies);
+        void configureRecyclerView1(List<MovieModel> movies);
         void errorCarga(String error);
     }
     interface presenter{

@@ -2,6 +2,8 @@ package com.example.apipeliculas.presenter;
 
 import android.util.Log;
 
+import androidx.annotation.NonNull;
+
 import com.example.apipeliculas.interfaces.MovieInterface;
 import com.example.apipeliculas.models.MovieModel;
 import com.example.apipeliculas.models.MoviesModel;
@@ -37,7 +39,7 @@ public class MoviePresenter implements MovieInterface.presenter {
     }
 
     @Override
-    public void mostrarPeliculas(Call<MovieSearchResponse> responseCall) {
+    public void mostrarPeliculas(@NonNull Call<MovieSearchResponse> responseCall) {
         responseCall.enqueue(new Callback<MovieSearchResponse>() {
             @Override
             public void onResponse(Call<MovieSearchResponse> call, Response<MovieSearchResponse> response) {
@@ -47,6 +49,7 @@ public class MoviePresenter implements MovieInterface.presenter {
                     List<MovieModel> movies = new ArrayList<>(response.body().getMovies());
                     try {
                         view.mostrarPeliculas(movies);
+                        view.configureRecyclerView1(movies);
                     } catch (Exception e) {
 
                     }
@@ -66,7 +69,7 @@ public class MoviePresenter implements MovieInterface.presenter {
     }
 
     @Override
-    public void mostrarPeliculasId(Call<MovieModel> responseCall) {
+    public void mostrarPeliculasId(@NonNull Call<MovieModel> responseCall) {
 
         responseCall.enqueue(new Callback<MovieModel>() {
             @Override

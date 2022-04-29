@@ -1,15 +1,16 @@
 package com.example.apipeliculas;
 
-import static java.util.Objects.*;
-
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.apipeliculas.adaptadores.AdapterDatos;
 import com.example.apipeliculas.adaptadores.MovieRecyclerView;
 import com.example.apipeliculas.adaptadores.OnMovieListener;
 import com.example.apipeliculas.interfaces.MovieInterface;
@@ -19,7 +20,6 @@ import com.example.apipeliculas.presenter.MoviePresenter;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
-import java.util.Objects;
 
 public class MovieListActivity extends AppCompatActivity implements MovieInterface.view, OnMovieListener {
 
@@ -38,6 +38,7 @@ public class MovieListActivity extends AppCompatActivity implements MovieInterfa
         setContentView(R.layout.activity_main);
         presenter = new MoviePresenter(this);
         recyclerView = findViewById(R.id.recyclerview);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL,false));
 
         nombrePelicula = "go";
         id = 65;
@@ -45,11 +46,12 @@ public class MovieListActivity extends AppCompatActivity implements MovieInterfa
 
         presenter.obtenerPeliculasId(id);
 
+
     }
 
 
     @Override
-    public void mostrarPeliculas( List<MovieModel> movies) {
+    public void mostrarPeliculas(@NonNull List<MovieModel> movies) {
         for (MovieModel movie : movies) {
             try {
                 Log.v("POKEDEX", "name : " + movie.getTitle());
@@ -62,17 +64,22 @@ public class MovieListActivity extends AppCompatActivity implements MovieInterfa
     @Override
     public void mostrarPeliculasId(MovieModel movies) {
         List<MovieModel> movies1 = new ArrayList((Collection) movies);
-            for(MovieModel movie : movies1) {
-                try {
-                    Log.v("POKEDEX", "name : " + movie.getTitle());
-                } catch (Exception e) {
-                }
-
+        for (MovieModel movie : movies1) {
+            try {
+                Log.v("POKEDEX", "name : " + movie.getTitle());
+            } catch (Exception e) {
             }
+
+        }
 
 
     }
 
+    @Override
+    public void configureRecyclerView1(List<MovieModel> movies) {
+        AdapterDatos adapterDatos = new AdapterDatos(movies);
+        recyclerView.setAdapter(adapterDatos);
+    }
 
 
     @Override
@@ -82,8 +89,8 @@ public class MovieListActivity extends AppCompatActivity implements MovieInterfa
 
 
     private void ConfigureRecyclerView(List<MovieModel> mMovies) {
-
-
+        AdapterDatos adapterDatos = new AdapterDatos(mMovies);
+        recyclerView.setAdapter(adapterDatos);
     }
 
     @Override
