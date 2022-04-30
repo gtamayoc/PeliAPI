@@ -13,7 +13,7 @@ import com.example.apipeliculas.R;
 public class MovieViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
 
-    TextView title, release_date, duration;
+    TextView title, release_date, duration,calificacion;
     ImageView imageView;
     RatingBar ratingBar;
 
@@ -21,11 +21,8 @@ public class MovieViewHolder extends RecyclerView.ViewHolder implements View.OnC
 
     public MovieViewHolder(@NonNull View itemView, OnMovieListener onMovieListener) {
         super(itemView);
-        title = itemView.findViewById(R.id.movie_title);
-        release_date = itemView.findViewById(R.id.movie_category);
-        duration = itemView.findViewById(R.id.movie_duration);
         imageView = itemView.findViewById(R.id.movie_image_view);
-        ratingBar = itemView.findViewById(R.id.ratings_bar);
+        calificacion = itemView.findViewById(R.id.stars);
 
         itemView.setOnClickListener(this);
 

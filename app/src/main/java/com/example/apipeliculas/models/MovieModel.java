@@ -14,7 +14,8 @@ public class MovieModel implements Parcelable {
     private int movie_id;
     private float vote_average;
     private String movie_overview;
-    private int runtime;
+
+    private String original_language;
     MovieInterface.presenter presenter;
 
     //constructor
@@ -31,7 +32,7 @@ public class MovieModel implements Parcelable {
         movie_id = in.readInt();
         vote_average = in.readFloat();
         movie_overview = in.readString();
-        runtime = in.readInt();
+        original_language = in.readString();
     }
 
     public static final Creator<MovieModel> CREATOR = new Creator<MovieModel>() {
@@ -45,6 +46,7 @@ public class MovieModel implements Parcelable {
             return new MovieModel[size];
         }
     };
+
 
     public String getTitle() {
         return title;
@@ -70,8 +72,8 @@ public class MovieModel implements Parcelable {
         return movie_overview;
     }
 
-    public int getRuntime() {
-        return runtime;
+    public String getOriginal_language() {
+        return original_language;
     }
 
     @Override
@@ -87,6 +89,21 @@ public class MovieModel implements Parcelable {
         parcel.writeInt(movie_id);
         parcel.writeFloat(vote_average);
         parcel.writeString(movie_overview);
+        parcel.writeString(original_language);
     }
 
+
+    @Override
+    public String toString() {
+        return "MovieModel{" +
+                "title='" + title + '\'' +
+                ", poster_path='" + poster_path + '\'' +
+                ", release_date='" + release_date + '\'' +
+                ", movie_id=" + movie_id +
+                ", vote_average=" + vote_average +
+                ", movie_overview='" + movie_overview + '\'' +
+                ", original_language='" + original_language + '\'' +
+                ", presenter=" + presenter +
+                '}';
+    }
 }

@@ -38,11 +38,11 @@ public class MovieListActivity extends AppCompatActivity implements MovieInterfa
         setContentView(R.layout.activity_main);
         presenter = new MoviePresenter(this);
         recyclerView = findViewById(R.id.recyclerview);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL,false));
+        recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL,false));
 
-        nombrePelicula = "go";
+        nombrePelicula = "The Incredibles";
         id = 65;
-        presenter.obtenerPeliculas("" + nombrePelicula, "2");
+        presenter.obtenerPeliculas("" + nombrePelicula, "1");
 
         presenter.obtenerPeliculasId(id);
 

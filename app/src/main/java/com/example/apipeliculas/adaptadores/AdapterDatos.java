@@ -11,7 +11,6 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.example.apipeliculas.MovieListActivity;
 import com.example.apipeliculas.R;
 import com.example.apipeliculas.models.MovieModel;
 
@@ -49,6 +48,7 @@ public class AdapterDatos extends RecyclerView.Adapter<AdapterDatos.ViewHolderDa
     public class ViewHolderDatos extends RecyclerView.ViewHolder {
 
         TextView title;
+        TextView calificacion;
         TextView releaseDate;
         TextView duration;
         ImageView imageView;
@@ -57,25 +57,19 @@ public class AdapterDatos extends RecyclerView.Adapter<AdapterDatos.ViewHolderDa
         public ViewHolderDatos(@NonNull View itemView) {
             super(itemView);
 
-            title = itemView.findViewById(R.id.movie_title);
-            releaseDate = itemView.findViewById(R.id.movie_category);
-            duration = itemView.findViewById(R.id.movie_duration);
             imageView = itemView.findViewById(R.id.movie_image_view);
-            ratingBar = itemView.findViewById(R.id.ratings_bar);
+            calificacion = itemView.findViewById(R.id.stars);
 
         }
 
 
         public void asignarDatos(@NonNull MovieModel movieModel) {
-            title.setText(movieModel.getTitle());
-            releaseDate.setText(movieModel.getRelease_date());
-            duration.setText(movieModel.getRuntime());
-            int voto= (int) (movieModel.getVote_average()/2);
-            ratingBar.setRating(voto);
-
+            Float voto= (Float) (movieModel.getVote_average());
+            calificacion.setText(""+voto);
             Glide.with(itemView.getContext())
-                    .load(movieModel.getPoster_path())
-                    .into((imageView));
+                    .load("https://image.tmdb.org/t/p/w500/"
+                            + movieModel.getPoster_path())
+                    .into(imageView);
 
         }
     }
