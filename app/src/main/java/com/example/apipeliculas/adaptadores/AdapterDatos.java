@@ -14,14 +14,19 @@ import com.bumptech.glide.Glide;
 import com.example.apipeliculas.R;
 import com.example.apipeliculas.models.MovieModel;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class AdapterDatos extends RecyclerView.Adapter<AdapterDatos.ViewHolderDatos> {
 
     private List<MovieModel> mMovies;
+    private List<MovieModel> mMoviesOriginal;
 
     public AdapterDatos(List<MovieModel> mMovies) {
         this.mMovies = mMovies;
+        mMoviesOriginal = new ArrayList<>();
+        mMoviesOriginal.addAll(mMovies);
     }
 
 
@@ -36,6 +41,29 @@ public class AdapterDatos extends RecyclerView.Adapter<AdapterDatos.ViewHolderDa
     public void onBindViewHolder(@NonNull ViewHolderDatos holder, int position) {
         holder.asignarDatos(mMovies.get(position));
     }
+
+    public void filtrado( String busqueda){
+        int longitud = busqueda.length();
+        if( longitud == 0){
+            mMovies.clear();
+            mMovies.addAll(mMoviesOriginal);
+        }else {
+            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
+                List<MovieModel> collection = mMovies.stream().filter(i-> i.getTitle()
+                        .toLowerCase().contains(busqueda.toLowerCase())).collect(Collectors.toList());
+                mMovies.addAll(collection);
+            }else{
+                for (MovieModel m: mMoviesOriginal) {
+                    if(m.getTitle().toLowerCase().contains(busqueda.toLowerCase())){
+                        mMovies.add(m);
+                    }
+                }
+            }
+        }
+
+        notifyDataSetChanged();
+    }
+
 
     @Override
     public int getItemCount() {
@@ -61,7 +89,6 @@ public class AdapterDatos extends RecyclerView.Adapter<AdapterDatos.ViewHolderDa
             calificacion = itemView.findViewById(R.id.stars);
 
         }
-
 
         public void asignarDatos(@NonNull MovieModel movieModel) {
             Float voto= (Float) (movieModel.getVote_average());
