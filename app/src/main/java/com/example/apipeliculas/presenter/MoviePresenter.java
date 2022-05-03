@@ -34,6 +34,11 @@ public class MoviePresenter implements MovieInterface.presenter {
     }
 
     @Override
+    public void discoveryPeliculas(String nombre, String page) {
+        this.model.descargarPeliculasDiscovery(nombre, page);
+    }
+
+    @Override
     public void buscarPeliculas(String nombre, String page) {
         this.model.descargarPeliculasBusqueda(nombre, page);
     }
@@ -50,7 +55,7 @@ public class MoviePresenter implements MovieInterface.presenter {
             public void onResponse(Call<MovieSearchResponse> call, Response<MovieSearchResponse> response) {
 
                 if (response.code() == 200) {
-                    Log.e("TAG-ERRO", "the response " + response.body().toString());
+                    Log.e("TAG2-ERRO", "the response " + response.body().toString());
                     List<MovieModel> movies = new ArrayList<>(response.body().getMovies());
                     try {
                         view.mostrarPeliculas(movies);
@@ -72,6 +77,7 @@ public class MoviePresenter implements MovieInterface.presenter {
             }
         });
     }
+
 
     @Override
     public void mostrarPeliculasBusqueda(Call<MovieSearchResponse> responseCall) {

@@ -67,18 +67,27 @@
 
     </LinearLayout>
 
-
-    <SearchView
-        android:id="@+id/search"
+    <Toolbar
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="25dp"
-        android:layout_marginEnd="25dp"
-        android:background="@drawable/navbar"
-        android:backgroundTint="#EDE0FF"
-        android:goIcon="@drawable/ic_baseline_star_24"
-        android:gravity="end"
-        android:orientation="horizontal" />
+        android:layout_height="?attr/actionBarSize">
+
+        <SearchView
+            android:id="@+id/search"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="25dp"
+            android:layout_marginEnd="25dp"
+            android:background="@drawable/navbar"
+            android:backgroundTint="#EDE0FF"
+            android:goIcon="@drawable/ic_baseline_star_24"
+            android:gravity="end"
+            android:orientation="horizontal"
+            android:queryHint="Buscar Peliculas"
+            android:theme="@style/ThemeOverlay.AppCompat.Light"/>
+
+    </Toolbar>
+
+
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerview1"

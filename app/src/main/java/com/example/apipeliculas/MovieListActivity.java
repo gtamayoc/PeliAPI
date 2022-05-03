@@ -29,7 +29,7 @@ public class MovieListActivity extends AppCompatActivity implements MovieInterfa
     int id;
     private RecyclerView recyclerView, recyclerView1;
     private MovieRecyclerView movieRecyclerView;
-    SearchView search, search1;
+    SearchView search;
 
     AdapterDatos adapterDatos,adapterDatosBusqueda;
 
@@ -51,9 +51,12 @@ public class MovieListActivity extends AppCompatActivity implements MovieInterfa
         id = 65;
         presenter.obtenerPeliculas("" + nombrePelicula, "1");
         presenter.obtenerPeliculasId(id);
-
         search = findViewById(R.id.search);
+        search.setIconifiedByDefault(false);
         search.setOnQueryTextListener(this);
+
+
+
     }
 
 
@@ -82,6 +85,7 @@ public class MovieListActivity extends AppCompatActivity implements MovieInterfa
 
     }
 
+
     @Override
     public void mostrarPeliculasBusqueda(List<MovieModel> movies) {
         adapterDatos = new AdapterDatos(movies);
@@ -100,12 +104,10 @@ public class MovieListActivity extends AppCompatActivity implements MovieInterfa
         recyclerView1.setAdapter(adapterDatos);
     }
 
-
     @Override
     public void errorCarga(String error) {
         Toast.makeText(this, "" + error, Toast.LENGTH_SHORT).show();
     }
-
 
     private void ConfigureRecyclerView(List<MovieModel> mMovies) {
         adapterDatos = new AdapterDatos(mMovies);
@@ -129,9 +131,11 @@ public class MovieListActivity extends AppCompatActivity implements MovieInterfa
 
     @Override
     public boolean onQueryTextChange(String s) {
+        List<MovieModel> movies = presenter.discoveryPelicula("" + s, "1");
             adapterDatos.filtrado(s);
 //        presenter.buscarPeliculas("" + s, "1");
 //        adapterDatosBusqueda.filtrado(s);
         return false;
+
     }
 }

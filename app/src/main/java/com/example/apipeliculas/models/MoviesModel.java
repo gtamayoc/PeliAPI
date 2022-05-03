@@ -21,12 +21,19 @@ public class MoviesModel implements MovieInterface.model {
         MovieApi movieApi = Service.getMovieApi();
         Call<MovieSearchResponse> responseCall;
         responseCall = movieApi
-                .searchMovie(
-                        Credenciales.API_KEY,
-                        "" + nombre,
-                        "" + page);
+                .searchMovie(Credenciales.API_KEY);
 
         this.presenter.mostrarPeliculas(responseCall);
+    }
+
+    @Override
+    public void descargarPeliculasDiscovery(String nombre, String page) {
+        MovieApi movieApi = Service.getMovieApi();
+        Call<MovieSearchResponse> responseCall;
+        responseCall = movieApi
+                .searchMovie(Credenciales.API_KEY);
+
+        this.presenter.mostrarPeliculasDiscovery(responseCall);
     }
 
     @Override
@@ -34,7 +41,7 @@ public class MoviesModel implements MovieInterface.model {
         MovieApi movieApi = Service.getMovieApi();
         Call<MovieSearchResponse> responseCall;
         responseCall = movieApi
-                .searchMovie(
+                .searchMovie1(
                         Credenciales.API_KEY,
                         "" + nombre,
                         "" + page);
