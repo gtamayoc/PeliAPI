@@ -5,7 +5,19 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".MovieListActivity">
+    tools:context=".MovieListActivity"
+    android:background="@color/white">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+
 
 
     <LinearLayout
@@ -13,11 +25,12 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
+
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-
+            android:layout_marginStart="15dp"
             >
 
             <TextView
@@ -25,18 +38,21 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
-                android:text="Bienvenido !"
+                android:text="@string/bienvenida"
                 android:textColor="@color/black"
                 android:textSize="25sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:fontFamily="@font/quicksandbold"/>
 
             <TextView
                 android:id="@+id/textView3"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:text="Hi, Pepe "
-                android:textSize="20sp" />
+                android:textSize="20sp"
+
+                android:fontFamily="@font/quicksandbold"/>
 
         </LinearLayout>
 
@@ -48,71 +64,291 @@
             >
 
             <ImageButton
+                android:background="@color/white"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="end"
                 android:layout_margin="25sp"
-                android:src="@drawable/ic_baseline_star_24"
-
-
+                android:src="@drawable/iconnotifi2"
                 />
         </LinearLayout>
+    </LinearLayout>
 
-        <TextView
-            android:id="@+id/textView2"
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                <SearchView
+                    android:layout_width="150pt"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/search"
+                    android:layout_marginStart="25dp"
+                    android:background="@drawable/navbar"
+                    android:backgroundTint="#EDE0FF"
+                    android:goIcon="@drawable/ic_baseline_star_24"
+                    android:layout_gravity="start"
+                    />
+
+
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    >
+
+                    <ImageButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/values"
+                        android:src="@drawable/confi"
+                        android:layout_gravity="start"
+                        />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+
+    <HorizontalScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+
+        android:layout_marginTop="10dp"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:layout_gravity="clip_horizontal"
+
+            >
+
+            <TextView
+                android:id="@+id/textViewPopular"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Popular"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="15dp"
+                android:textSize="19sp"
+                android:textColor="@color/activeColor"
+                android:fontFamily="@font/quicksandbold"
+                />
+
+            <TextView
+                android:id="@+id/textViewRecientes"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Más reciente"
+                android:layout_marginTop="5dp"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="15dp"
+                android:textSize="17sp"
+                android:textColor="@color/textGray"
+                android:fontFamily="@font/quicksandbold"
+                />
+
+            <TextView
+                android:id="@+id/textViewMejorPuntuación"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Mejor puntuación"
+                android:layout_marginTop="5dp"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="15dp"
+                android:textSize="17sp"
+                android:textColor="@color/textGray"
+                android:fontFamily="@font/quicksandbold"
+                />
+
+            <TextView
+                android:id="@+id/textViewProximos"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Proximos"
+                android:layout_marginTop="5dp"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="15dp"
+                android:textSize="17sp"
+                android:textColor="@color/textGray"
+                android:fontFamily="@font/quicksandbold"
+                />
+
+
+
+
+        </LinearLayout>
+
+    </HorizontalScrollView>
+
+
+            <!--    <LinearLayout-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:orientation="horizontal"-->
+
+<!--        >-->
+
+<!--        <LinearLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:orientation="vertical"-->
+
+<!--            >-->
+<!--        <TextView-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="Recomendaciones"-->
+<!--            android:textStyle="bold"-->
+<!--            android:textSize="22sp"-->
+
+
+<!--            />-->
+
+<!--        </LinearLayout>-->
+
+<!--        <LinearLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:orientation="vertical"-->
+<!--            >-->
+
+<!--        <TextView-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="Mira Todo"-->
+<!--            android:layout_gravity="end"-->
+<!--            android:textStyle="bold"-->
+<!--            android:gravity="end"-->
+<!--            android:textSize="22sp"-->
+<!--            android:textColor="#df6937"-->
+
+
+<!--            />-->
+<!--        </LinearLayout>-->
+
+<!--    </LinearLayout>-->
+
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerview1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.0" />
+
+            <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="TextView" />
+            android:orientation="vertical"
+            android:padding="6dp"
+
+            >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:text="Recomendaciones"
+                android:textColor="@color/black"
+                android:textSize="25sp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+
+            >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Ver todo"
+                android:layout_gravity="end"
+                android:textStyle="bold"
+                android:gravity="end"
+                android:textSize="25sp"
+                android:textColor="#df6937"
+                android:layout_margin="10dp"
+                />
+        </LinearLayout>
 
 
     </LinearLayout>
 
-    <Toolbar
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize">
 
-        <SearchView
-            android:id="@+id/search"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="25dp"
-            android:layout_marginEnd="25dp"
-            android:background="@drawable/navbar"
-            android:backgroundTint="#EDE0FF"
-            android:goIcon="@drawable/ic_baseline_star_24"
-            android:gravity="end"
-            android:orientation="horizontal"
-            android:queryHint="Buscar Peliculas"
-            android:theme="@style/ThemeOverlay.AppCompat.Light"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
 
-    </Toolbar>
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="15dp">
+
+                <ImageView
+                    android:id="@+id/movie_image_view1"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:background="@drawable/values"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/ic_launcher_background"
+                    android:layout_margin="15dp"
+                    />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                <TextView
+                    android:layout_marginTop="25dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="prueba"
+                    android:id="@+id/prueba"
+                    android:fontFamily="@font/quicksandbold"
+                    android:textSize="19sp"
+                    />
 
 
+                </LinearLayout>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerview1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+            </LinearLayout>
 
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerview"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
-
+        </LinearLayout>
+    </ScrollView>
 
 </LinearLayout>

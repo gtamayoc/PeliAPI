@@ -21,19 +21,12 @@ public class MoviesModel implements MovieInterface.model {
         MovieApi movieApi = Service.getMovieApi();
         Call<MovieSearchResponse> responseCall;
         responseCall = movieApi
-                .searchMovie(Credenciales.API_KEY);
+                .searchMovie(
+                        Credenciales.API_KEY,
+                        "" + nombre,
+                        "" + page);
 
         this.presenter.mostrarPeliculas(responseCall);
-    }
-
-    @Override
-    public void descargarPeliculasDiscovery(String nombre, String page) {
-        MovieApi movieApi = Service.getMovieApi();
-        Call<MovieSearchResponse> responseCall;
-        responseCall = movieApi
-                .searchMovie(Credenciales.API_KEY);
-
-        this.presenter.mostrarPeliculasDiscovery(responseCall);
     }
 
     @Override
@@ -41,13 +34,64 @@ public class MoviesModel implements MovieInterface.model {
         MovieApi movieApi = Service.getMovieApi();
         Call<MovieSearchResponse> responseCall;
         responseCall = movieApi
-                .searchMovie1(
+                .searchMovie(
                         Credenciales.API_KEY,
                         "" + nombre,
                         "" + page);
 
         this.presenter.mostrarPeliculas(responseCall);
     }
+
+    @Override
+    public void descargarPeliculasDiscover() {
+        MovieApi movieApi = Service.getMovieApi();
+        Call<MovieSearchResponse> responseCall;
+        responseCall = movieApi
+                .searchMovie1(Credenciales.API_KEY);
+
+        this.presenter.mostrarPeliculas(responseCall);
+    }
+
+    @Override
+    public void descargarPeliculasPopular() {
+        MovieApi movieApi = Service.getMovieApi();
+        Call<MovieSearchResponse> responseCall;
+        responseCall = movieApi
+                .searchMovie2(Credenciales.API_KEY);
+
+        this.presenter.mostrarPeliculas(responseCall);
+    }
+
+    @Override
+    public void descargarPeliculasTop() {
+        MovieApi movieApi = Service.getMovieApi();
+        Call<MovieSearchResponse> responseCall;
+        responseCall = movieApi
+                .searchMovie3(Credenciales.API_KEY);
+
+        this.presenter.mostrarPeliculas(responseCall);
+    }
+
+    @Override
+    public void descargarPeliculasUltimos() {
+        MovieApi movieApi = Service.getMovieApi();
+        Call<MovieSearchResponse> responseCall;
+        responseCall = movieApi
+                .searchMovie6(Credenciales.API_KEY);
+        this.presenter.mostrarPeliculas(responseCall);
+    }
+
+
+    @Override
+    public void descargarPeliculasProximos() {
+        MovieApi movieApi = Service.getMovieApi();
+        Call<MovieSearchResponse> responseCall;
+        responseCall = movieApi
+                .searchMovie4(Credenciales.API_KEY);
+
+        this.presenter.mostrarPeliculas(responseCall);
+    }
+
 
     @Override
     public void descargarPeliculasId(int id) {

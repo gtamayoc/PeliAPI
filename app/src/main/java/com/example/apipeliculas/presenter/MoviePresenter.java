@@ -34,13 +34,33 @@ public class MoviePresenter implements MovieInterface.presenter {
     }
 
     @Override
-    public void discoveryPeliculas(String nombre, String page) {
-        this.model.descargarPeliculasDiscovery(nombre, page);
+    public void buscarPeliculas(String nombre, String page) {
+        this.model.descargarPeliculasBusqueda(nombre, page);
     }
 
     @Override
-    public void buscarPeliculas(String nombre, String page) {
-        this.model.descargarPeliculasBusqueda(nombre, page);
+    public void buscarPeliculasDiscover() {
+        this.model.descargarPeliculasDiscover();
+    }
+
+    @Override
+    public void buscarPeliculasPopular() {
+        this.model.descargarPeliculasPopular();
+    }
+
+    @Override
+    public void buscarPeliculasTop() {
+        this.model.descargarPeliculasTop();
+    }
+
+    @Override
+    public void buscarPeliculasProximos() {
+        this.model.descargarPeliculasProximos();
+    }
+
+    @Override
+    public void buscarPeliculasUltimos() {
+        this.model.descargarPeliculasUltimos();
     }
 
     @Override
@@ -55,7 +75,7 @@ public class MoviePresenter implements MovieInterface.presenter {
             public void onResponse(Call<MovieSearchResponse> call, Response<MovieSearchResponse> response) {
 
                 if (response.code() == 200) {
-                    Log.e("TAG2-ERRO", "the response " + response.body().toString());
+                    Log.e("TAG-ERRO", "the response " + response.body().toString());
                     List<MovieModel> movies = new ArrayList<>(response.body().getMovies());
                     try {
                         view.mostrarPeliculas(movies);
@@ -78,9 +98,8 @@ public class MoviePresenter implements MovieInterface.presenter {
         });
     }
 
-
     @Override
-    public void mostrarPeliculasBusqueda(Call<MovieSearchResponse> responseCall) {
+    public void mostrarPeliculasBusqueda(@NonNull Call<MovieSearchResponse> responseCall) {
         responseCall.enqueue(new Callback<MovieSearchResponse>() {
             @Override
             public void onResponse(Call<MovieSearchResponse> call, Response<MovieSearchResponse> response) {
