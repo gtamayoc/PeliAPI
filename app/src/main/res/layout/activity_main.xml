@@ -17,9 +17,6 @@
             android:layout_height="wrap_content"
             android:orientation="vertical" >
 
-
-
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -307,13 +304,28 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:elevation="19dp">
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="15dp"
+                    android:layout_height="151dp"
+                    android:backgroundTint="@color/black"
+                    android:src="#FF6925"
+                    android:layout_marginStart="19dp"
+                    android:layout_marginBottom="15dp"
+                    />
+                </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:padding="15dp">
+                    android:paddingTop="25dp">
 
                 <ImageView
                     android:id="@+id/movie_image_view1"
@@ -322,7 +334,7 @@
                     android:background="@drawable/values"
                     android:scaleType="centerCrop"
                     android:src="@drawable/ic_launcher_background"
-                    android:layout_margin="15dp"
+                    android:layout_marginStart="15dp"
                     />
 
                 </LinearLayout>
@@ -340,6 +352,7 @@
                     android:id="@+id/prueba"
                     android:fontFamily="@font/quicksandbold"
                     android:textSize="19sp"
+                    android:layout_marginStart="15dp"
                     />
 
 

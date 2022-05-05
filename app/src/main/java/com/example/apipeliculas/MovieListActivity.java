@@ -63,10 +63,10 @@ public class MovieListActivity extends AppCompatActivity implements MovieInterfa
 
 
 //       nombrePelicula = "The Incredibles";
-//        nombrePelicula = "The Incredibles";
+        nombrePelicula = "the home";
         id = 65;
-        presenter.buscarPeliculasPopular();
-//        presenter.obtenerPeliculas("" + nombrePelicula, "1");
+//        presenter.buscarPeliculasPopular();
+        presenter.obtenerPeliculas("" + nombrePelicula, "1");
 //        presenter.buscarPeliculasDiscover();
         presenter.obtenerPeliculasId(id);
         search = findViewById(R.id.search);
