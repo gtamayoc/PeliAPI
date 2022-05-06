@@ -28,10 +28,17 @@ public class AdapterDatos extends RecyclerView.Adapter<AdapterDatos.ViewHolderDa
     private List<MovieModel> mMoviesOriginal;
     Context contex;
     MovieListActivity movies;
+    final AdapterDatos.OnItemClickListener listener;
 
-    public AdapterDatos(List<MovieModel> mMovies, Context contex) {
+
+    public interface OnItemClickListener{
+        void onItemClick(MovieModel item);
+    }
+
+    public AdapterDatos(List<MovieModel> mMovies, Context contex, AdapterDatos.OnItemClickListener listener) {
         this.contex = contex;
         this.mMovies = mMovies;
+        this.listener = listener;
         mMoviesOriginal = new ArrayList<>();
         mMoviesOriginal.addAll(mMovies);
     }
@@ -72,6 +79,23 @@ public class AdapterDatos extends RecyclerView.Adapter<AdapterDatos.ViewHolderDa
 
         notifyDataSetChanged();
     }
+
+
+    public void agregar(List<MovieModel> movies) {
+            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
+                List<MovieModel> collection = mMovies;
+                mMovies.addAll(collection);
+            } else {
+                for (MovieModel m : mMoviesOriginal) {
+                        mMovies.add(m);
+
+                }
+            }
+
+
+        notifyDataSetChanged();
+    }
+
 
     public void filtrado2(String busqueda) {
 
@@ -134,7 +158,7 @@ public class AdapterDatos extends RecyclerView.Adapter<AdapterDatos.ViewHolderDa
             calificacion.setText("" + voto);
             if(movieModel.getPoster_path() == null){
                 Glide.with(itemView.getContext())
-                        .load(R.drawable.ic_baseline_star_24)
+                        .load(R.drawable.noimage)
                         .into(imageView);
             }else{
 
@@ -143,6 +167,12 @@ public class AdapterDatos extends RecyclerView.Adapter<AdapterDatos.ViewHolderDa
                                 + movieModel.getPoster_path())
                         .into(imageView);
             }
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    listener.onItemClick(movieModel);
+                }
+            });
 
         }
 

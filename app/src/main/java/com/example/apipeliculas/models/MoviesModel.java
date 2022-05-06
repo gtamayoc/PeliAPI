@@ -100,4 +100,14 @@ public class MoviesModel implements MovieInterface.model {
         this.presenter.mostrarPeliculasId(responseCall);
     }
 
+    @Override
+    public void descargarPeliculasPopularPage(int page) {
+        MovieApi movieApi = Service.getMovieApi();
+        Call<MovieSearchResponse> responseCall;
+        String page1 = String.valueOf(page);
+        responseCall = movieApi
+                .searchMovie21(Credenciales.API_KEY, page1);
+        this.presenter.mostrarPeliculasPopular(responseCall);
+    }
+
 }

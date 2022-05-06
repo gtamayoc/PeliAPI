@@ -49,6 +49,12 @@ public class MoviePresenter implements MovieInterface.presenter {
     }
 
     @Override
+    public void buscarPeliculasPopularPage(int page) {
+        this.model.descargarPeliculasPopularPage(page);
+    }
+
+
+    @Override
     public void buscarPeliculasTop() {
         this.model.descargarPeliculasTop();
     }
@@ -69,6 +75,36 @@ public class MoviePresenter implements MovieInterface.presenter {
     }
 
     @Override
+    public void mostrarPeliculasPopular(@NonNull Call<MovieSearchResponse> responseCall) {
+        responseCall.enqueue(new Callback<MovieSearchResponse>() {
+            @Override
+            public void onResponse(Call<MovieSearchResponse> call, Response<MovieSearchResponse> response) {
+
+                if (response.code() == 200) {
+                    Log.e("TAG-ERRO4", "the response " + response.body().toString());
+                    List<MovieModel> movies = new ArrayList<>(response.body().getMovies());
+                    try {
+                        view.mostrarPeliculas(movies);
+                        view.configureRecyclerView2(movies);
+                    } catch (Exception e) {
+
+                    }
+                } else {
+                    Log.e("TAG2-ERRO4", "the response " + response.errorBody().toString());
+                    String respuesta = "hay un error en la descarga del recurso 1 : " + response.code();
+                    view.errorCarga(respuesta);
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<MovieSearchResponse> call, Throwable t) {
+                Log.e("TAG2-ERRO4", "the response " + t.getMessage());
+            }
+        });
+    }
+
+    @Override
     public void mostrarPeliculas(@NonNull Call<MovieSearchResponse> responseCall) {
         responseCall.enqueue(new Callback<MovieSearchResponse>() {
             @Override
@@ -85,7 +121,7 @@ public class MoviePresenter implements MovieInterface.presenter {
                     }
                 } else {
                     Log.e("TAG2-ERRO", "the response " + response.errorBody().toString());
-                    String respuesta = "hay un error en la descarga del recurso : " + response.code();
+                    String respuesta = "hay un error en la descarga del recurso 2: " + response.code();
                     view.errorCarga(respuesta);
                 }
 
@@ -114,7 +150,7 @@ public class MoviePresenter implements MovieInterface.presenter {
                     }
                 } else {
                     Log.e("TAG2-ERRO", "the response " + response.errorBody().toString());
-                    String respuesta = "hay un error en la descarga del recurso 2 : " + response.code();
+                    String respuesta = "hay un error en la descarga del recurso 3 : " + response.code();
                     view.errorCarga(respuesta);
                 }
 

@@ -8,11 +8,13 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="textGray">#A5A5A5</color>
-    <color name="activeColor">#d5622e</color>
+    <color name="activeColor1">#FF7E28</color>
+    <color name="activeColor">#FA711A</color>
+
 
     <style name="active">
         <item name="android:textStyle">bold</item>
-        <item name="android:textColor">#d5622e</item>
+        <item name="android:textColor">#FA711A</item>
         <item name="android:textSize">19sp</item>
     </style>
     <style name="normal">

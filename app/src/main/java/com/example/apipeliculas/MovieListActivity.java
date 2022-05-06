@@ -4,18 +4,21 @@ import static com.example.apipeliculas.R.*;
 import static com.example.apipeliculas.R.color.*;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -35,48 +38,95 @@ import java.util.List;
 public class MovieListActivity extends AppCompatActivity implements MovieInterface.view, OnMovieListener, SearchView.OnQueryTextListener {
 
 
-    String nombrePelicula,nombrePeliculaBusqueda;
+    String nombrePelicula, nombrePeliculaBusqueda;
     int id;
     private RecyclerView recyclerView, recyclerView1;
     private MovieRecyclerView movieRecyclerView;
-    TextView textViewPopular,textViewRecientes,textViewPuntuacion, textViewProximos, textViewUltimos,textView;
+    TextView textViewPopular, textViewRecientes, textViewPuntuacion, textViewProximos, textViewUltimos, textView, textViewStarts, textViewVerTodo;
     SearchView search, search1;
     ImageView imageView;
-
-    AdapterDatos adapterDatos,adapterDatos1,adapterDatosBusqueda;
-
+    LinearLayout linearLayout;
+    boolean aptoParaCargar;
+    AdapterDatos adapterDatos, adapterDatos1, adapterDatosBusqueda;
+    int page;
     MovieInterface.presenter presenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(layout.activity_main);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
         presenter = new MoviePresenter(this);
         recyclerView1 = findViewById(R.id.recyclerview1);
-        recyclerView1.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
+        recyclerView1.setLayoutManager(layoutManager);
         textViewPopular = findViewById(R.id.textViewPopular);
         textViewRecientes = findViewById(R.id.textViewRecientes);
         textViewPuntuacion = findViewById(R.id.textViewMejorPuntuación);
-        textViewProximos= findViewById(R.id.textViewProximos);
+        textViewProximos = findViewById(R.id.textViewProximos);
         textView = findViewById(R.id.prueba);
         imageView = findViewById(R.id.movie_image_view1);
-
-
+        textViewStarts = findViewById(R.id.stars);
+        linearLayout = findViewById(R.id.peli);
+        textViewVerTodo = findViewById(R.id.verTodo);
+        recyclerView1.setLayoutManager(layoutManager);
 //       nombrePelicula = "The Incredibles";
-        nombrePelicula = "the home";
+//              nombrePelicula = "jack";
         id = 65;
-//        presenter.buscarPeliculasPopular();
-        presenter.obtenerPeliculas("" + nombrePelicula, "1");
+        presenter.buscarPeliculasPopular();
+//             presenter.obtenerPeliculas("" + nombrePelicula, "1");
 //        presenter.buscarPeliculasDiscover();
         presenter.obtenerPeliculasId(id);
         search = findViewById(R.id.search);
         search.setOnQueryTextListener(this);
+        int filtroBusqueda = 0;
+        recyclerView1.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+                if (dx == 1) {
+//                    int visibleItemCount = layoutManager.getChildCount();
+//                    int totalItemCount = layoutManager.getItemCount();
+//                    int pastVisitables = layoutManager.findFirstVisibleItemPosition();
+//                    page -= 1;
+//                    if (aptoParaCargar) {
+//
+//                        if ((visibleItemCount + pastVisitables) >= totalItemCount) {
+//                            page += 1;
+//                            presenter.buscarPeliculasPopularPage(page);
+//                            Toast.makeText(MovieListActivity.this, "prueba1 "+page, Toast.LENGTH_SHORT).show();
+//                            aptoParaCargar = false;
+//                        }
+//
+//
+//                }
+
+                }
+                if (dx > 0) {
+                    int visibleItemCount = layoutManager.getChildCount();
+                    int totalItemCount = layoutManager.getItemCount();
+                    int pastVisitables = layoutManager.findFirstVisibleItemPosition();
+                    if (aptoParaCargar) {
+
+                        if ((visibleItemCount + pastVisitables) >= totalItemCount) {
+                            page += 1;
+                            presenter.buscarPeliculasPopularPage(page);
+                            aptoParaCargar = false;
+                            Toast.makeText(MovieListActivity.this, "prueba2 "+page, Toast.LENGTH_SHORT).show();
+                        }
+
+                    }
+                }
 
 
-
+            }
+        });
+        page = 1;
+        aptoParaCargar = true;
         textViewPopular.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                page = 1;
+                aptoParaCargar = true;
                 textViewPopular.setTextAppearance(MovieListActivity.this, style.active);
                 textViewRecientes.setTextAppearance(MovieListActivity.this, style.normal);
                 textViewPuntuacion.setTextAppearance(MovieListActivity.this, style.normal);
@@ -88,6 +138,8 @@ public class MovieListActivity extends AppCompatActivity implements MovieInterfa
         textViewRecientes.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                page = 1;
+                aptoParaCargar = true;
                 textViewPopular.setTextAppearance(MovieListActivity.this, style.normal);
                 textViewRecientes.setTextAppearance(MovieListActivity.this, style.active);
                 textViewPuntuacion.setTextAppearance(MovieListActivity.this, style.normal);
@@ -99,6 +151,8 @@ public class MovieListActivity extends AppCompatActivity implements MovieInterfa
         textViewPuntuacion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                page = 1;
+                aptoParaCargar = true;
                 textViewPopular.setTextAppearance(MovieListActivity.this, style.normal);
                 textViewRecientes.setTextAppearance(MovieListActivity.this, style.normal);
                 textViewPuntuacion.setTextAppearance(MovieListActivity.this, style.active);
@@ -110,6 +164,8 @@ public class MovieListActivity extends AppCompatActivity implements MovieInterfa
         textViewProximos.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                page = 1;
+                aptoParaCargar = true;
                 textViewPopular.setTextAppearance(MovieListActivity.this, style.normal);
                 textViewRecientes.setTextAppearance(MovieListActivity.this, style.normal);
                 textViewPuntuacion.setTextAppearance(MovieListActivity.this, style.normal);
@@ -118,6 +174,13 @@ public class MovieListActivity extends AppCompatActivity implements MovieInterfa
             }
         });
 
+
+        textViewVerTodo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
 
 
     }
@@ -150,22 +213,57 @@ public class MovieListActivity extends AppCompatActivity implements MovieInterfa
 
     @Override
     public void mostrarPeliculasBusqueda(List<MovieModel> movies) {
-        adapterDatos = new AdapterDatos(movies,this);
+        adapterDatos = new AdapterDatos(movies, this, new AdapterDatos.OnItemClickListener() {
+            @Override
+            public void onItemClick(MovieModel item) {
+                moveToDescription(item);
+            }
+        });
         recyclerView1.setAdapter(adapterDatos);
         ultimaPelicula(movies);
+    }
+
+    @Override
+    public void configureRecyclerView2(List<MovieModel> movies) {
+        adapterDatos = new AdapterDatos(movies, this, new AdapterDatos.OnItemClickListener() {
+            @Override
+            public void onItemClick(MovieModel item) {
+                moveToDescription(item);
+            }
+
+        });
+        adapterDatos.agregar(movies);
+        recyclerView1.setAdapter(adapterDatos);
+
     }
 
     @Override
     public void configureRecyclerView1(List<MovieModel> movies) {
-        adapterDatos = new AdapterDatos(movies,this);
+        adapterDatos = new AdapterDatos(movies, this, new AdapterDatos.OnItemClickListener() {
+            @Override
+            public void onItemClick(MovieModel item) {
+                moveToDescription(item);
+            }
+        });
         recyclerView1.setAdapter(adapterDatos);
         ultimaPelicula(movies);
 
     }
 
+    private void moveToDescription(MovieModel item) {
+        Intent intent = new Intent(this, MovieDescription.class);
+        intent.putExtra("MovieElement", item);
+        startActivity(intent);
+    }
+
     @Override
     public void recyclerBusqueda(List<MovieModel> movies) {
-        adapterDatosBusqueda = new AdapterDatos(movies,this);
+        adapterDatosBusqueda = new AdapterDatos(movies, this, new AdapterDatos.OnItemClickListener() {
+            @Override
+            public void onItemClick(MovieModel item) {
+                moveToDescription(item);
+            }
+        });
         recyclerView1.setAdapter(adapterDatosBusqueda);
     }
 
@@ -177,19 +275,36 @@ public class MovieListActivity extends AppCompatActivity implements MovieInterfa
 
 
     private void ConfigureRecyclerView(List<MovieModel> mMovies) {
-        adapterDatos = new AdapterDatos(mMovies,this);
+        adapterDatos = new AdapterDatos(mMovies, this, new AdapterDatos.OnItemClickListener() {
+            @Override
+            public void onItemClick(MovieModel item) {
+                moveToDescription(item);
+            }
+        });
         recyclerView1.setAdapter(adapterDatos);
     }
 
     public void ultimaPelicula(@NonNull List<MovieModel> mMovies) {
-        String sCadena = mMovies.get(0).getRelease_date();
-        String sSubCadena = sCadena.substring(0,4);
 
-            textView.setText(mMovies.get(0).getTitle()+" ("+sSubCadena+")");
-            Glide.with(this)
+        String sCadena = mMovies.get(0).getRelease_date();
+        String sSubCadena = sCadena.substring(0, 4);
+        float voto = mMovies.get(0).getVote_average();
+        String votoString = Float.toString(voto);
+        textViewStarts.setText(votoString);
+
+        textView.setText(mMovies.get(0).getTitle() + " (" + sSubCadena + ")");
+        Glide.with(this)
                 .load("https://image.tmdb.org/t/p/w500/"
                         + mMovies.get(0).getPoster_path())
                 .into(imageView);
+
+        linearLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                MovieModel model = mMovies.get(0);
+                moveToDescription(model);
+            }
+        });
     }
 
     @Override
@@ -209,12 +324,12 @@ public class MovieListActivity extends AppCompatActivity implements MovieInterfa
 
     @Override
     public boolean onQueryTextChange(@NonNull String s) {
-        if (s.isEmpty()){
+        if (s.isEmpty()) {
             presenter.buscarPeliculasPopular();
-        }else{
-            if(s.length() > 30){
+        } else {
+            if (s.length() > 30) {
                 Toast.makeText(this, "Ingresar Valor Valido", Toast.LENGTH_SHORT).show();
-            }else{
+            } else {
                 presenter.obtenerPeliculas("" + s, "1");
                 adapterDatos.filtrado(s);
             }

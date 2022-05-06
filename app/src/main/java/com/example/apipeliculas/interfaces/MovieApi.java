@@ -20,6 +20,9 @@ public interface MovieApi {
     @GET("3/movie/popular")
     Call<MovieSearchResponse> searchMovie2(@Query("api_key") String key);
 
+    @GET("3/movie/popular")
+    Call<MovieSearchResponse> searchMovie21(@Query("api_key") String key, @Query("page") String page);
+
     @GET("3/movie/top_rated")
     Call<MovieSearchResponse> searchMovie3(@Query("api_key") String key);
 

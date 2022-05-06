@@ -5,6 +5,8 @@ import android.os.Parcelable;
 
 import com.example.apipeliculas.interfaces.MovieInterface;
 
+import java.io.Serializable;
+
 public class MovieModel implements Parcelable {
     //modelo para nuestras peliculas
 

@@ -6,7 +6,6 @@
         android:duration="600"
         />
 
-
     <scale android:fromXScale="0.0"
         android:fromYScale="0.0"
         android:toXScale="1.0"
@@ -15,7 +14,5 @@
         android:duration="300"
 
     />
-
-
 
 </set>
