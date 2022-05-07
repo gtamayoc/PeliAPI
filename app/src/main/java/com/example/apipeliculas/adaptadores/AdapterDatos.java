@@ -8,6 +8,7 @@ import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
@@ -57,7 +58,7 @@ public class AdapterDatos extends RecyclerView.Adapter<AdapterDatos.ViewHolderDa
         holder.asignarDatos(mMovies.get(position));
     }
 
-    public void filtrado(String busqueda) {
+    public void filtrado(@NonNull String busqueda) {
         int longitud = busqueda.length();
         if (longitud == 0) {
             mMovies.clear();
@@ -83,15 +84,16 @@ public class AdapterDatos extends RecyclerView.Adapter<AdapterDatos.ViewHolderDa
 
     public void agregar(List<MovieModel> movies) {
             if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
-                List<MovieModel> collection = mMovies;
-                mMovies.addAll(collection);
+                List<MovieModel> collection = movies;
+                mMovies.clear();
+                mMovies.addAll(mMoviesOriginal);
+
             } else {
+                mMovies.clear();
                 for (MovieModel m : mMoviesOriginal) {
                         mMovies.add(m);
-
                 }
             }
-
 
         notifyDataSetChanged();
     }
@@ -166,6 +168,7 @@ public class AdapterDatos extends RecyclerView.Adapter<AdapterDatos.ViewHolderDa
                         .load("https://image.tmdb.org/t/p/w500/"
                                 + movieModel.getPoster_path())
                         .into(imageView);
+                System.out.println("cargando imagen");
             }
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override

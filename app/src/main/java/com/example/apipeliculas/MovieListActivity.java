@@ -46,9 +46,11 @@ public class MovieListActivity extends AppCompatActivity implements MovieInterfa
     SearchView search, search1;
     ImageView imageView;
     LinearLayout linearLayout;
-    boolean aptoParaCargar;
+    boolean aptoParaCargar = true;
+    int previousTotal=0,totalItemCount=0,totalItemCount1=0;
     AdapterDatos adapterDatos, adapterDatos1, adapterDatosBusqueda;
     int page;
+
     MovieInterface.presenter presenter;
 
     @Override
@@ -79,39 +81,49 @@ public class MovieListActivity extends AppCompatActivity implements MovieInterfa
         search = findViewById(R.id.search);
         search.setOnQueryTextListener(this);
         int filtroBusqueda = 0;
+
         recyclerView1.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
                 super.onScrolled(recyclerView, dx, dy);
-                if (dx == 1) {
-//                    int visibleItemCount = layoutManager.getChildCount();
-//                    int totalItemCount = layoutManager.getItemCount();
-//                    int pastVisitables = layoutManager.findFirstVisibleItemPosition();
-//                    page -= 1;
-//                    if (aptoParaCargar) {
-//
-//                        if ((visibleItemCount + pastVisitables) >= totalItemCount) {
-//                            page += 1;
-//                            presenter.buscarPeliculasPopularPage(page);
-//                            Toast.makeText(MovieListActivity.this, "prueba1 "+page, Toast.LENGTH_SHORT).show();
-//                            aptoParaCargar = false;
-//                        }
-//
-//
-//                }
+                if (dx < 0) {
+                    int visibleItemCount1 = layoutManager.getChildCount();
+                    int totalItemCount1 = layoutManager.getItemCount();
+                    int pastVisitables1 = layoutManager.findLastVisibleItemPosition();
+                    System.out.println("hh" + pastVisitables1);
+                    if (aptoParaCargar && pastVisitables1 == 2) {
+                        Toast.makeText(MovieListActivity.this, "hh ", Toast.LENGTH_SHORT).show();
+                            if(page==1){
+
+                            }else{
+                                page -= 1;
+                                presenter.buscarPeliculasPopularPage(page);
+                                Toast.makeText(MovieListActivity.this, "prueba2 "+page, Toast.LENGTH_SHORT).show();
+                                aptoParaCargar = false;
+                            }
+
+
+
 
                 }
+
+
+
+
+                }
+
                 if (dx > 0) {
                     int visibleItemCount = layoutManager.getChildCount();
                     int totalItemCount = layoutManager.getItemCount();
                     int pastVisitables = layoutManager.findFirstVisibleItemPosition();
-                    if (aptoParaCargar) {
+                    System.out.println("past "+pastVisitables+"."+visibleItemCount+"."+totalItemCount);
+                    if (aptoParaCargar && pastVisitables==17) {
 
-                        if ((visibleItemCount + pastVisitables) >= totalItemCount) {
+                        if ((visibleItemCount + pastVisitables) >= totalItemCount
+                                && pastVisitables>=0) {
                             page += 1;
                             presenter.buscarPeliculasPopularPage(page);
-                            aptoParaCargar = false;
-                            Toast.makeText(MovieListActivity.this, "prueba2 "+page, Toast.LENGTH_SHORT).show();
+                            aptoParaCargar=false;
                         }
 
                     }
@@ -182,14 +194,13 @@ public class MovieListActivity extends AppCompatActivity implements MovieInterfa
             }
         });
 
-
     }
-
 
     @Override
     public void mostrarPeliculas(@NonNull List<MovieModel> movies) {
         for (MovieModel movie : movies) {
             try {
+                aptoParaCargar = true;
                 Log.v("POKEDEX", "name : " + movie.getTitle());
             } catch (Exception e) {
             }
@@ -228,6 +239,7 @@ public class MovieListActivity extends AppCompatActivity implements MovieInterfa
         adapterDatos = new AdapterDatos(movies, this, new AdapterDatos.OnItemClickListener() {
             @Override
             public void onItemClick(MovieModel item) {
+                aptoParaCargar = true;
                 moveToDescription(item);
             }
 
