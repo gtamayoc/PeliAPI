@@ -49,10 +49,9 @@ public class MoviePresenter implements MovieInterface.presenter {
     }
 
     @Override
-    public void buscarPeliculasPopularPage(int page) {
-        this.model.descargarPeliculasPopularPage(page);
+    public void buscarPeliculasPopularPage(int page, int tipoBusqueda) {
+        this.model.descargarPeliculasTipoPage(page, tipoBusqueda);
     }
-
 
     @Override
     public void buscarPeliculasTop() {
@@ -91,7 +90,7 @@ public class MoviePresenter implements MovieInterface.presenter {
                     }
                 } else {
                     Log.e("TAG2-ERRO4", "the response " + response.errorBody().toString());
-                    String respuesta = "hay un error en la descarga del recurso 1 : " + response.code();
+                    String respuesta = "hay un error en la descarga del recurso 12 : " + response.code();
                     view.errorCarga(respuesta);
                 }
 
@@ -103,6 +102,7 @@ public class MoviePresenter implements MovieInterface.presenter {
             }
         });
     }
+
 
     @Override
     public void mostrarPeliculas(@NonNull Call<MovieSearchResponse> responseCall) {

@@ -9,12 +9,12 @@
     android:background="@color/white">
 
     <ScrollView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:orientation="vertical">
 
             <LinearLayout
@@ -88,11 +88,7 @@
                         android:background="@drawable/navbar"
                         android:backgroundTint="#EDE0FF"
                         android:goIcon="@drawable/ic_baseline_star_24"
-                        >
-
-
-
-                    </SearchView>
+                        android:queryHint="Buscar Peliculas"/>
 
 
                 </LinearLayout>

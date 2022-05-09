@@ -8,7 +8,6 @@ import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
@@ -32,7 +31,7 @@ public class AdapterDatos extends RecyclerView.Adapter<AdapterDatos.ViewHolderDa
     final AdapterDatos.OnItemClickListener listener;
 
 
-    public interface OnItemClickListener{
+    public interface OnItemClickListener {
         void onItemClick(MovieModel item);
     }
 
@@ -79,21 +78,22 @@ public class AdapterDatos extends RecyclerView.Adapter<AdapterDatos.ViewHolderDa
         }
 
         notifyDataSetChanged();
+
     }
 
 
     public void agregar(List<MovieModel> movies) {
-            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
-                List<MovieModel> collection = movies;
-                mMovies.clear();
-                mMovies.addAll(mMoviesOriginal);
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
+            List<MovieModel> collection = movies;
+            mMovies.clear();
+            mMovies.addAll(mMoviesOriginal);
 
-            } else {
-                mMovies.clear();
-                for (MovieModel m : mMoviesOriginal) {
-                        mMovies.add(m);
-                }
+        } else {
+            mMovies.clear();
+            for (MovieModel m : mMoviesOriginal) {
+                mMovies.add(m);
             }
+        }
 
         notifyDataSetChanged();
     }
@@ -121,6 +121,7 @@ public class AdapterDatos extends RecyclerView.Adapter<AdapterDatos.ViewHolderDa
         }
 
         notifyDataSetChanged();
+
     }
 
 
@@ -148,21 +149,19 @@ public class AdapterDatos extends RecyclerView.Adapter<AdapterDatos.ViewHolderDa
             cv = itemView.findViewById(R.id.cardView);
             imageView = itemView.findViewById(R.id.movie_image_view);
             calificacion = itemView.findViewById(R.id.stars);
-            title= itemView.findViewById(R.id.prueba);
-
+            title = itemView.findViewById(R.id.prueba);
 
         }
-
 
 
         public void asignarDatos(@NonNull MovieModel movieModel) {
             Float voto = (Float) (movieModel.getVote_average());
             calificacion.setText("" + voto);
-            if(movieModel.getPoster_path() == null){
+            if (movieModel.getPoster_path() == null) {
                 Glide.with(itemView.getContext())
                         .load(R.drawable.noimage)
                         .into(imageView);
-            }else{
+            } else {
 
                 Glide.with(itemView.getContext())
                         .load("https://image.tmdb.org/t/p/w500/"
