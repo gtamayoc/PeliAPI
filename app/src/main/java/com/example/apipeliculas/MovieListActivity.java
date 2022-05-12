@@ -502,7 +502,7 @@ public class MovieListActivity extends AppCompatActivity implements MovieInterfa
             @Override
             public void run() {
                 metodoEjecutar();//llamamos nuestro metodo
-                handler.postDelayed(this, 1000);//se ejecutara cada 1 segundos
+                handler.postDelayed(this, 100);//se ejecutara cada 1 segundos
             }
         }, 100);//empezara a ejecutarse después de 1 milisegundos
     }
