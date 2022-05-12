@@ -7,8 +7,7 @@ import android.net.NetworkInfo;
 public class MovieInternet {
 
 
-    public static boolean OnLine(Context context)
-    {
+    public static boolean OnLine(Context context) {
         ConnectivityManager cm;
         NetworkInfo ni;
         cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
@@ -30,14 +29,18 @@ public class MovieInternet {
                 tipoConexion2 = true;
             }
 
-            if (tipoConexion1 == true || tipoConexion2 == true) {
-                /* Estas conectado a internet usando wifi o redes moviles, puedes enviar tus datos */
+            if (tipoConexion1 || tipoConexion2) {
+                if (tipoConexion1 == false) {
+                    return false;
+                } else {
+                    return true;
+                }
             }
+
+        } else {
+            return false;
         }
-        else {
-            /* No estas conectado a internet */
-        }
-        return tipoConexion1;
+        return false;
     }
 
 

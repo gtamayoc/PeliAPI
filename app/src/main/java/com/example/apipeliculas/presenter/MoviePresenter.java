@@ -80,7 +80,6 @@ public class MoviePresenter implements MovieInterface.presenter {
             public void onResponse(Call<MovieSearchResponse> call, Response<MovieSearchResponse> response) {
 
                 if (response.code() == 200) {
-                    Log.e("TAG-ERRO4", "the response " + response.body().toString());
                     List<MovieModel> movies = new ArrayList<>(response.body().getMovies());
                     try {
                         view.mostrarPeliculas(movies);
@@ -89,7 +88,6 @@ public class MoviePresenter implements MovieInterface.presenter {
 
                     }
                 } else {
-                    Log.e("TAG2-ERRO4", "the response " + response.errorBody().toString());
                     String respuesta = "hay un error en la descarga del recurso : " + response.code();
                     view.errorCarga(respuesta);
                 }
@@ -113,7 +111,6 @@ public class MoviePresenter implements MovieInterface.presenter {
             public void onResponse(Call<MovieSearchResponse> call, Response<MovieSearchResponse> response) {
 
                 if (response.code() == 200) {
-                    Log.e("TAG-ERRO", "the response " + response.body().toString());
                     List<MovieModel> movies = new ArrayList<>(response.body().getMovies());
                     try {
                         view.mostrarPeliculas(movies);
@@ -122,8 +119,7 @@ public class MoviePresenter implements MovieInterface.presenter {
 
                     }
                 } else {
-                    Log.e("TAG2-ERRO", "the response " + response.errorBody().toString());
-                    String respuesta = "hay un error en la descarga del recurso 2: " + response.code();
+                    String respuesta = "hay un error en la descarga del recurso : " + response.code();
                     view.errorCarga(respuesta);
                 }
 
@@ -143,7 +139,6 @@ public class MoviePresenter implements MovieInterface.presenter {
             public void onResponse(Call<MovieSearchResponse> call, Response<MovieSearchResponse> response) {
 
                 if (response.code() == 200) {
-                    Log.e("TAG-ERRO", "the response " + response.body().toString());
                     List<MovieModel> movies = new ArrayList<>(response.body().getMovies());
                     try {
                         view.mostrarPeliculasBusqueda(movies);
@@ -151,8 +146,7 @@ public class MoviePresenter implements MovieInterface.presenter {
 
                     }
                 } else {
-                    Log.e("TAG2-ERRO", "the response " + response.errorBody().toString());
-                    String respuesta = "hay un error en la descarga del recurso 3 : " + response.code();
+                    String respuesta = "hay un error en la descarga del recurso : " + response.code();
                     view.errorCarga(respuesta);
                 }
 
@@ -160,7 +154,7 @@ public class MoviePresenter implements MovieInterface.presenter {
 
             @Override
             public void onFailure(Call<MovieSearchResponse> call, Throwable t) {
-                Log.e("TAG2-ERRO2", "the response " + t.getMessage());
+                Log.e("error", "the response " + t.getMessage());
             }
         });
     }
@@ -173,18 +167,14 @@ public class MoviePresenter implements MovieInterface.presenter {
             public void onResponse(Call<MovieModel> call, Response<MovieModel> response) {
                 if (response.code() == 200) {
                     MovieModel movie = response.body();
-                    Log.v("TAG", "the response : " + movie.getTitle());
                     try {
                         view.mostrarPeliculasId(movie);
                     } catch (Exception e) {
 
                     }
                 } else {
-                    try {
-                        Log.v("TAG", "Error : " + response.errorBody().string());
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
+                    String respuesta = "hay un error en la descarga del recurso : " + response.code();
+                    view.errorCarga(respuesta);
                 }
             }
 

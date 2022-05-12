@@ -41,27 +41,26 @@ import java.util.List;
 public class MovieListActivity extends AppCompatActivity implements MovieInterface.view, OnMovieListener, SearchView.OnQueryTextListener {
 
 
-    String nombrePelicula, nombrePeliculaBusqueda;
     int id;
+    int page = 1;
+    int tipoBusqueda = 1;
+    public List<MovieModel> mMovies1;
+    private static final long TIEMPO_MINIMO = 900;
+    private static final long TIEMPO_MINIMO2 = 3500;
+    private long ultimoClick = 0;
     private RecyclerView recyclerView, recyclerView1;
     private MovieRecyclerView movieRecyclerView;
+    boolean aptoParaCargar = true;
+    boolean cargar = true;
     TextView textViewPopular, textViewRecientes, textViewPuntuacion, textViewProximos, textViewUltimos, textView, textViewStarts, textViewVerTodo;
     SearchView search, search1;
     ImageView imageView;
     LinearLayout linearLayout;
-    boolean aptoParaCargar = true;
-    int previousTotal = 0, totalItemCount = 0, totalItemCount1 = 0;
     AdapterDatos adapterDatos, adapterDatos1, adapterDatosBusqueda;
-    int page = 1;
-    boolean cargar = true;
-    public List<MovieModel> mMovies1;
-    int tipoBusqueda = 1;
     String busqueda;
     ImageButton buttonPerfil;
     MovieInterface.presenter presenter;
     ImageView loading;
-    private static final long TIEMPO_MINIMO = 800;
-    private long ultimoClick = 0;
     Context context = this;
 
     @Override
@@ -85,9 +84,6 @@ public class MovieListActivity extends AppCompatActivity implements MovieInterfa
         search = (SearchView) findViewById(R.id.search);
         buttonPerfil = findViewById(R.id.perfil);
         loading = findViewById(R.id.loading);
-
-//       nombrePelicula = "The Incredibles";
-//              nombrePelicula = "jack";
 
 
         id = 65;
@@ -114,15 +110,6 @@ public class MovieListActivity extends AppCompatActivity implements MovieInterfa
             apariencia(tipoBusqueda);
             imprimir(tipoBusqueda);
         }
-
-
-//      presenter.obtenerPeliculas("" + nombrePelicula, "1");
-//      presenter.buscarPeliculasDiscover();
-        //   presenter.obtenerPeliculasId(id);
-
-
-        int filtroBusqueda = 0;
-
 
         recyclerView1.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
@@ -251,9 +238,10 @@ public class MovieListActivity extends AppCompatActivity implements MovieInterfa
         search.setOnQueryTextListener(this);
         ejecutar();
 
+
     }
 
-    public void noClick(Long ultimoClick,Long TIEMPO_MINIMO){
+    public void noClick(Long ultimoClick, Long TIEMPO_MINIMO) {
         if (SystemClock.elapsedRealtime() - ultimoClick < TIEMPO_MINIMO) {
             return;
         }
@@ -262,7 +250,7 @@ public class MovieListActivity extends AppCompatActivity implements MovieInterfa
 
 
     public void apariencia(int tipoBusqueda) {
-        if(MovieInternet.OnLine(this)) {
+        if (MovieInternet.OnLine(this)) {
             if (tipoBusqueda == 1) {
                 textViewPopular.setTextAppearance(MovieListActivity.this, style.active);
                 textViewRecientes.setTextAppearance(MovieListActivity.this, style.normal);
@@ -289,9 +277,9 @@ public class MovieListActivity extends AppCompatActivity implements MovieInterfa
                 textViewPuntuacion.setTextAppearance(MovieListActivity.this, style.normal);
                 textViewProximos.setTextAppearance(MovieListActivity.this, style.normal);
             } else {
-                Toast.makeText(MovieListActivity.this, "ERORRRRTipousua", Toast.LENGTH_SHORT).show();
+                Toast.makeText(MovieListActivity.this, "Error Tipo de Usuario", Toast.LENGTH_SHORT).show();
             }
-        }else{
+        } else {
             Toast.makeText(this, "No tienes acceso a internet", Toast.LENGTH_SHORT).show();
         }
     }
@@ -302,19 +290,19 @@ public class MovieListActivity extends AppCompatActivity implements MovieInterfa
     }
 
     public void imprimir(int tipoBusqueda) {
-            if (tipoBusqueda == 1) {
-                presenter.buscarPeliculasPopularPage(page, tipoBusqueda);
-            } else if (tipoBusqueda == 2) {
-                presenter.buscarPeliculasPopularPage(page, tipoBusqueda);
-            } else if (tipoBusqueda == 3) {
-                presenter.buscarPeliculasPopularPage(page, tipoBusqueda);
-            } else if (tipoBusqueda == 4) {
-                presenter.buscarPeliculasPopularPage(page, tipoBusqueda);
-            } else if (tipoBusqueda == 5) {
-                presenter.buscarPeliculas("" + busqueda, page);
-            } else {
-                Toast.makeText(MovieListActivity.this, "ERORRRRTipousua", Toast.LENGTH_SHORT).show();
-            }
+        if (tipoBusqueda == 1) {
+            presenter.buscarPeliculasPopularPage(page, tipoBusqueda);
+        } else if (tipoBusqueda == 2) {
+            presenter.buscarPeliculasPopularPage(page, tipoBusqueda);
+        } else if (tipoBusqueda == 3) {
+            presenter.buscarPeliculasPopularPage(page, tipoBusqueda);
+        } else if (tipoBusqueda == 4) {
+            presenter.buscarPeliculasPopularPage(page, tipoBusqueda);
+        } else if (tipoBusqueda == 5) {
+            presenter.buscarPeliculas("" + busqueda, page);
+        } else {
+            Toast.makeText(MovieListActivity.this, "Error Tipo de Usuario", Toast.LENGTH_SHORT).show();
+        }
 
     }
 
@@ -323,7 +311,7 @@ public class MovieListActivity extends AppCompatActivity implements MovieInterfa
         for (MovieModel movie : movies) {
             try {
                 aptoParaCargar = true;
-                Log.v("POKEDEX", "name : " + movie.getTitle());
+                Log.v("Pelicula", "name : " + movie.getTitle());
             } catch (Exception e) {
             }
 
@@ -335,7 +323,7 @@ public class MovieListActivity extends AppCompatActivity implements MovieInterfa
         List<MovieModel> movies1 = new ArrayList((Collection) movies);
         for (MovieModel movie : movies1) {
             try {
-                Log.v("POKEDEX", "name : " + movie.getTitle());
+                Log.v("Pelicula", "name : " + movie.getTitle());
             } catch (Exception e) {
             }
         }
@@ -454,22 +442,21 @@ public class MovieListActivity extends AppCompatActivity implements MovieInterfa
                     .into(imageView);
         }
 
-        System.out.println("cargando imagen 2");
-
         ejecutar();
-
-
-            linearLayout.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    if(MovieInternet.OnLine(context)) {
+        linearLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (SystemClock.elapsedRealtime() - ultimoClick < TIEMPO_MINIMO2) {
+                    return;
+                }
+                if (MovieInternet.OnLine(context)) {
                     MovieModel model = mMovies.get(0);
                     moveToDescription(model);
-                    }else{
-                        Toast.makeText(context, "No tienes acceso a internet", Toast.LENGTH_SHORT).show();
-                    }
+                } else {
+                    Toast.makeText(context, "No tienes acceso a internet", Toast.LENGTH_SHORT).show();
                 }
-            });
+            }
+        });
 
 
     }
@@ -509,42 +496,41 @@ public class MovieListActivity extends AppCompatActivity implements MovieInterfa
     }
 
 
-    private void ejecutar(){
-        final Handler handler= new Handler();
+    private void ejecutar() {
+        final Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
                 metodoEjecutar();//llamamos nuestro metodo
-                handler.postDelayed(this,1000);//se ejecutara cada 10 segundos
+                handler.postDelayed(this, 1000);//se ejecutara cada 1 segundos
             }
-        },100);//empezara a ejecutarse después de 5 milisegundos
+        }, 100);//empezara a ejecutarse después de 1 milisegundos
     }
+
     private void metodoEjecutar() {
-        if(MovieInternet.OnLine(this)){
+        if (MovieInternet.OnLine(this)) {
             recyclerView1.setVisibility(View.VISIBLE);
             loading.setVisibility(View.GONE);
-        }else
-        {
+        } else {
             recyclerView1.setVisibility(View.GONE);
             loading.setVisibility(View.VISIBLE);
         }
     }
-    
-    
+
+
     @Override
     public boolean onQueryTextChange(@NonNull String s) {
         tipoBusqueda = 5;
         if (s.isEmpty()) {
             tipoBusqueda = 1;
-            System.out.println("pr1");
             apariencia(tipoBusqueda);
             imprimir(tipoBusqueda);
         } else {
             if (s.length() > 30 || s.length() < 2) {
-                System.out.println("pr2");
+                if (s.length() > 30) {
+                    Toast.makeText(context, "Cantidad de caracteres excedida", Toast.LENGTH_SHORT).show();
+                }
             } else {
-                System.out.println("pr3");
-                apariencia(tipoBusqueda);
                 page = 1;
                 presenter.buscarPeliculas("" + s, page);
             }
