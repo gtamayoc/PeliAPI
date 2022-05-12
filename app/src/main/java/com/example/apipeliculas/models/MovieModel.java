@@ -5,8 +5,6 @@ import android.os.Parcelable;
 
 import com.example.apipeliculas.interfaces.MovieInterface;
 
-import java.io.Serializable;
-
 public class MovieModel implements Parcelable {
     //modelo para nuestras peliculas
 
@@ -15,7 +13,7 @@ public class MovieModel implements Parcelable {
     private String release_date;
     private int movie_id;
     private float vote_average;
-    private String movie_overview;
+    private String overview;
 
     private String original_language;
     MovieInterface.presenter presenter;
@@ -33,7 +31,7 @@ public class MovieModel implements Parcelable {
         release_date = in.readString();
         movie_id = in.readInt();
         vote_average = in.readFloat();
-        movie_overview = in.readString();
+        overview = in.readString();
         original_language = in.readString();
     }
 
@@ -70,8 +68,8 @@ public class MovieModel implements Parcelable {
         return vote_average;
     }
 
-    public String getMovie_overview() {
-        return movie_overview;
+    public String getOverview() {
+        return overview;
     }
 
     public String getOriginal_language() {
@@ -90,7 +88,7 @@ public class MovieModel implements Parcelable {
         parcel.writeString(release_date);
         parcel.writeInt(movie_id);
         parcel.writeFloat(vote_average);
-        parcel.writeString(movie_overview);
+        parcel.writeString(overview);
         parcel.writeString(original_language);
     }
 
@@ -103,7 +101,7 @@ public class MovieModel implements Parcelable {
                 ", release_date='" + release_date + '\'' +
                 ", movie_id=" + movie_id +
                 ", vote_average=" + vote_average +
-                ", movie_overview='" + movie_overview + '\'' +
+                ", overview='" + overview + '\'' +
                 ", original_language='" + original_language + '\'' +
                 ", presenter=" + presenter +
                 '}';

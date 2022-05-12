@@ -10,7 +10,7 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -44,7 +44,9 @@
                             android:layout_marginTop="25dp"
                             android:layout_marginBottom="25dp"
                             android:background="@color/white"
-                            android:src="@drawable/iconnotifi24" />
+                            android:scaleX="0.6"
+                            android:scaleY="0.7"
+                            android:src="@drawable/iconnotifi2atras" />
 
                     </LinearLayout>
 
@@ -68,12 +70,12 @@
 
                 <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
-                    android:layout_height="480dp"
-                    android:layout_gravity="center_horizontal|center_vertical"
+                    android:layout_height="200pt"
+                    android:layout_gravity="center"
                     android:layout_marginStart="17pt"
                     android:layout_marginEnd="17pt"
                     android:orientation="vertical"
-                    app:cardCornerRadius="16dp"
+                    app:cardCornerRadius="46dp"
 
                     >
 
@@ -84,6 +86,48 @@
                         android:scaleType="centerCrop"
                         android:src="@drawable/ic_launcher_background" />
 
+                    <ImageView
+                        android:id="@+id/movie_image_view2"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:padding="60pt"
+                        android:src="@drawable/play1" />
+
+
+                    <ImageView
+                        android:layout_width="100dp"
+                        android:layout_height="140dp"
+                        android:layout_gravity="end|bottom"
+                        android:layout_marginRight="-35dp"
+                        android:layout_marginBottom="-35dp"
+                        android:background="@xml/circulo" />
+
+                    <ImageView
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_gravity="end|bottom"
+                        android:layout_marginRight="17dp"
+                        android:layout_marginBottom="49dp"
+                        android:src="@drawable/ic_baseline_star_24"
+
+
+                        />
+
+                    <TextView
+                        android:id="@+id/stars"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="end|bottom"
+                        android:layout_marginRight="20dp"
+                        android:layout_marginBottom="25dp"
+                        android:text="0.0"
+                        android:textColor="@color/white"
+                        android:textSize="17sp"
+                        android:textStyle="bold"
+
+
+                        />
+
                 </androidx.cardview.widget.CardView>
 
             </LinearLayout>
@@ -92,6 +136,9 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="15dp"
                 android:orientation="vertical">
 
 
@@ -102,24 +149,20 @@
                     android:layout_gravity="center"
                     android:layout_marginTop="15pt"
                     android:fontFamily="@font/quicksandbold"
-                    android:text="The Incredibles"
+                    android:text="Title"
+                    android:textAlignment="center"
                     android:textColor="@color/black"
                     android:textSize="23sp"
-                    android:textStyle="bold"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/prueba2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center"
                     android:layout_marginStart="15dp"
                     android:layout_marginTop="15dp"
                     android:layout_marginEnd="15dp"
-                    android:layout_gravity="center"
                     android:fontFamily="@font/quicksandbold"
                     android:text="Production by : Disney Pixar"
                     android:textSize="19sp" />
@@ -127,29 +170,101 @@
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
                     android:layout_gravity="center"
                     android:layout_marginTop="5pt"
-                    >
+                    android:orientation="horizontal">
 
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:src="@drawable/ic_baseline_star_24"
+                        android:layout_gravity="center"
 
-                        android:layout_gravity="center"/>
+                        android:src="@drawable/date" />
 
                     <TextView
                         android:id="@+id/date"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="center"
                         android:fontFamily="@font/quicksandbold"
-                        android:text="16-06-2022"
-                        android:textSize="17sp"
-                        android:layout_gravity="center"/>
+                        android:text="01-01-2022"
+                        android:textSize="17sp" />
 
 
                 </LinearLayout>
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="40pt"
+                android:gravity="center"
+                android:orientation="horizontal"
+                app:cardCornerRadius="2dp"
+                android:layout_marginStart="30dp"
+                android:layout_marginEnd="30dp"
+                android:elevation="3dp"
+                android:outlineAmbientShadowColor="@color/black"
+                android:background="@drawable/shadown"
+                android:layout_marginBottom="20dp"
+                android:layout_marginTop="15dp"
+                >
+
+
+                    <Button
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:text="Description"
+                        android:textAlignment="center"
+                        android:paddingEnd="50dp"
+                        android:paddingStart="50dp"
+                        android:layout_marginHorizontal="10dp"
+                        android:fontFamily="@font/quicksandbold"
+                        android:layout_marginVertical="15dp"
+                        android:background="@drawable/valuesd"
+
+                        />
+
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:gravity="center">
+
+                    <Button
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="Starts"
+                        android:textColor="@color/black"
+                        android:backgroundTint="#00FA711A"
+                        android:background="#00FFFFFF"
+                        android:fontFamily="@font/quicksandbold"
+                        android:layout_marginVertical="15dp"
+                        android:textAlignment="center"/>
+
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                >
+
+                <TextView
+                    android:id="@+id/description"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginHorizontal="15sp"
+                    android:layout_marginBottom="25pt"
+                    android:text="Six strangers suddenly awaken in a remote, endless cornfield. Stripped of their possessions, they are left with only six items: a gun with a single bullet, matches, a lantern, a knife, a compass, and a flask of water. As mysterious sirens blare in the distance and traps appear at every turn, the group realizes it’s been plunged into a cat-and-mouse game with an unseen evil, and survival depends upon solving a diabolical and deadly puzzle."
+                    android:textAlignment="center"
+                    android:textSize="16sp"/>
 
             </LinearLayout>
 

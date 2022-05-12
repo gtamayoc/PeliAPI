@@ -162,12 +162,11 @@ public class AdapterDatos extends RecyclerView.Adapter<AdapterDatos.ViewHolderDa
                         .load(R.drawable.noimage)
                         .into(imageView);
             } else {
-
                 Glide.with(itemView.getContext())
                         .load("https://image.tmdb.org/t/p/w500/"
                                 + movieModel.getPoster_path())
                         .into(imageView);
-                System.out.println("cargando imagen");
+                System.out.println("cargando imagen 1");
             }
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override

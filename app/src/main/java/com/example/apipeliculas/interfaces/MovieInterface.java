@@ -32,7 +32,7 @@ public interface MovieInterface {
     interface presenter {
         void obtenerPeliculas(String nombre, String page);
 
-        void buscarPeliculas(String nombre, String page);
+        void buscarPeliculas(String nombre, int page);
 
         void buscarPeliculasDiscover();
 
@@ -61,7 +61,7 @@ public interface MovieInterface {
     interface model {
         void descargarPeliculas(String nombre, String page);
 
-        void descargarPeliculasBusqueda(String nombre, String page);
+        void descargarPeliculasBusqueda(String nombre, int page);
 
         void descargarPeliculasDiscover();
 

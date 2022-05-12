@@ -26,20 +26,22 @@ public class MoviesModel implements MovieInterface.model {
                 .searchMovie(
                         Credenciales.API_KEY,
                         "" + nombre,
-                        "" + page);
+                        "" + page,
+                        "es");
 
         this.presenter.mostrarPeliculas(responseCall);
     }
 
     @Override
-    public void descargarPeliculasBusqueda(String nombre, String page) {
+    public void descargarPeliculasBusqueda(String nombre, int page) {
         MovieApi movieApi = Service.getMovieApi();
         Call<MovieSearchResponse> responseCall;
         responseCall = movieApi
-                .searchMovie(
+                .searchMovieP(
                         Credenciales.API_KEY,
                         "" + nombre,
-                        "" + page);
+                        "" + page,
+                        "es");
 
         this.presenter.mostrarPeliculas(responseCall);
     }
@@ -49,7 +51,8 @@ public class MoviesModel implements MovieInterface.model {
         MovieApi movieApi = Service.getMovieApi();
         Call<MovieSearchResponse> responseCall;
         responseCall = movieApi
-                .searchMovie1(Credenciales.API_KEY);
+                .searchMovie1(Credenciales.API_KEY,
+                        "es");
 
         this.presenter.mostrarPeliculas(responseCall);
     }
@@ -59,7 +62,8 @@ public class MoviesModel implements MovieInterface.model {
         MovieApi movieApi = Service.getMovieApi();
         Call<MovieSearchResponse> responseCall;
         responseCall = movieApi
-                .searchMovie2(Credenciales.API_KEY);
+                .searchMovie2(Credenciales.API_KEY,
+                        "es");
 
         this.presenter.mostrarPeliculas(responseCall);
     }
@@ -69,7 +73,8 @@ public class MoviesModel implements MovieInterface.model {
         MovieApi movieApi = Service.getMovieApi();
         Call<MovieSearchResponse> responseCall;
         responseCall = movieApi
-                .searchMovie3(Credenciales.API_KEY);
+                .searchMovie3(Credenciales.API_KEY,
+                        "es");
 
         this.presenter.mostrarPeliculas(responseCall);
     }
@@ -79,7 +84,8 @@ public class MoviesModel implements MovieInterface.model {
         MovieApi movieApi = Service.getMovieApi();
         Call<MovieSearchResponse> responseCall;
         responseCall = movieApi
-                .searchMovie6(Credenciales.API_KEY);
+                .searchMovie6(Credenciales.API_KEY,
+                        "es");
         this.presenter.mostrarPeliculas(responseCall);
     }
 
@@ -89,7 +95,8 @@ public class MoviesModel implements MovieInterface.model {
         MovieApi movieApi = Service.getMovieApi();
         Call<MovieSearchResponse> responseCall;
         responseCall = movieApi
-                .searchMovie4(Credenciales.API_KEY);
+                .searchMovie4(Credenciales.API_KEY,
+                        "es");
 
         this.presenter.mostrarPeliculas(responseCall);
     }
@@ -110,20 +117,24 @@ public class MoviesModel implements MovieInterface.model {
 
         if (tipoBusqueda == 1) {
             responseCall = movieApi
-                    .searchMovie21(Credenciales.API_KEY, page1);
+                    .searchMovie21(Credenciales.API_KEY, page1,
+                            "es");
             this.presenter.mostrarPeliculasPopular(responseCall);
         } else if (tipoBusqueda == 2) {
             responseCall = movieApi
-                    .searchMovie61(Credenciales.API_KEY, page1);
+                    .searchMovie61(Credenciales.API_KEY, page1,
+                            "es");
             this.presenter.mostrarPeliculasPopular(responseCall);
         } else if (tipoBusqueda == 3) {
             Log.e("TAG-ERRO4", "the response ");
             responseCall = movieApi
-                    .searchMovie31(Credenciales.API_KEY, page1);
+                    .searchMovie31(Credenciales.API_KEY, page1,
+                            "es");
             this.presenter.mostrarPeliculasPopular(responseCall);
         } else if (tipoBusqueda == 4) {
             responseCall = movieApi
-                    .searchMovie41(Credenciales.API_KEY, page1);
+                    .searchMovie41(Credenciales.API_KEY, page1,
+                            "es");
             this.presenter.mostrarPeliculasPopular(responseCall);
         } else if (tipoBusqueda == 5) {
 

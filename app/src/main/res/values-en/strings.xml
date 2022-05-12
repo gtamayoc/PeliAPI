@@ -2,6 +2,12 @@
 <resources>
     <string name="app_name">ApiPeliculas</string>
     <string name="bienvenida">Welcome Back !</string>
-
-
+    <string name="buscar_peliculas">Search Movie</string>
+    <string name="popular">Popular</string>
+    <string name="mas_recientes">latest</string>
+    <string name="mejor_puntuacion">Best rated</string>
+    <string name="proximos">Upcoming</string>
+    <string name="titulo">title</string>
+    <string name="recomendaciones">Recommendations</string>
+    <string name="ver_todo">Sell all</string>
 </resources>

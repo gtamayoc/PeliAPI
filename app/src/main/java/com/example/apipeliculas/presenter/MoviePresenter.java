@@ -34,7 +34,7 @@ public class MoviePresenter implements MovieInterface.presenter {
     }
 
     @Override
-    public void buscarPeliculas(String nombre, String page) {
+    public void buscarPeliculas(String nombre, int page) {
         this.model.descargarPeliculasBusqueda(nombre, page);
     }
 
@@ -90,7 +90,7 @@ public class MoviePresenter implements MovieInterface.presenter {
                     }
                 } else {
                     Log.e("TAG2-ERRO4", "the response " + response.errorBody().toString());
-                    String respuesta = "hay un error en la descarga del recurso 12 : " + response.code();
+                    String respuesta = "hay un error en la descarga del recurso : " + response.code();
                     view.errorCarga(respuesta);
                 }
 
@@ -98,6 +98,8 @@ public class MoviePresenter implements MovieInterface.presenter {
 
             @Override
             public void onFailure(Call<MovieSearchResponse> call, Throwable t) {
+                String respuesta = "hay un error en la descarga del recurso : " + t.getMessage();
+                view.errorCarga(respuesta);
                 Log.e("TAG2-ERRO4", "the response " + t.getMessage());
             }
         });

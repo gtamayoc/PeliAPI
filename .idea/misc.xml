@@ -3,6 +3,13 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Giuseppe/AndroidStudioProjects/PelisAPI/PeliAPI/app/src/main/res/drawable/ic_baseline_person_outline_24.xml" value="0.133" />
+        <entry key="..\:/Users/Giuseppe/AndroidStudioProjects/PelisAPI/PeliAPI/app/src/main/res/drawable/valuesd.xml" value="0.171" />
+        <entry key="..\:/Users/Giuseppe/AndroidStudioProjects/PelisAPI/PeliAPI/app/src/main/res/layout/activity_main.xml" value="0.22" />
+        <entry key="..\:/Users/Giuseppe/AndroidStudioProjects/PelisAPI/PeliAPI/app/src/main/res/layout/activity_movie_description.xml" value="0.3333333333333333" />
+        <entry key="..\:/Users/Giuseppe/AndroidStudioProjects/PelisAPI/PeliAPI/app/src/main/res/layout/activity_movie_perfil.xml" value="0.22" />
+        <entry key="..\:/Users/Giuseppe/AndroidStudioProjects/PelisAPI/PeliAPI/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.1" />
+        <entry key="..\:/Users/Giuseppe/AndroidStudioProjects/PelisAPI/PeliAPI/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.1" />
         <entry key="..\:/Users/WPOSS/AndroidStudioProjects/PeliAPI/app/src/main/res/drawable/ic_baseline_star_24.xml" value="0.294" />
         <entry key="..\:/Users/WPOSS/AndroidStudioProjects/PeliAPI/app/src/main/res/drawable/layer.xml" value="0.3505" />
         <entry key="..\:/Users/WPOSS/AndroidStudioProjects/PeliAPI/app/src/main/res/drawable/movier.xml" value="0.3015" />

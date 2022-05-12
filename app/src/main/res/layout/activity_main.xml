@@ -4,9 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     android:orientation="vertical"
-    tools:context=".MovieListActivity"
-    android:background="@color/white">
+    tools:context=".MovieListActivity">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -60,12 +60,13 @@
                     >
 
                     <ImageButton
+                        android:id="@+id/perfil"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="end"
                         android:layout_margin="25sp"
                         android:background="@color/white"
-                        android:src="@drawable/iconnotifi24" />
+                        android:src="@drawable/ic_baseline_person_outline_24" />
                 </LinearLayout>
             </LinearLayout>
 
@@ -81,14 +82,14 @@
 
                     <SearchView
                         android:id="@+id/search"
-                        android:layout_width="150pt"
+                        android:layout_width="140pt"
                         android:layout_height="wrap_content"
                         android:layout_gravity="end"
-                        android:layout_marginStart="10dp"
+                        android:layout_marginStart="25dp"
                         android:background="@drawable/navbar"
                         android:backgroundTint="#EDE0FF"
                         android:goIcon="@drawable/ic_baseline_star_24"
-                        android:queryHint="Buscar Peliculas"/>
+                        android:queryHint="Buscar Peliculas" />
 
 
                 </LinearLayout>
@@ -118,8 +119,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="15dp"
-
-                android:layout_marginTop="10dp">
+                android:layout_marginTop="10dp"
+                android:layout_gravity="end">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -138,7 +139,7 @@
                         android:layout_marginTop="5dp"
                         android:layout_marginEnd="15dp"
                         android:fontFamily="@font/quicksandbold"
-                        android:text="Popular"
+                        android:text="@string/popular"
                         android:textColor="@color/activeColor"
                         android:textSize="19sp" />
 
@@ -150,7 +151,7 @@
                         android:layout_marginTop="5dp"
                         android:layout_marginEnd="15dp"
                         android:fontFamily="@font/quicksandbold"
-                        android:text="Más reciente"
+                        android:text="@string/mas_recientes"
                         android:textColor="@color/textGray"
                         android:textSize="17sp" />
 
@@ -162,7 +163,7 @@
                         android:layout_marginTop="5dp"
                         android:layout_marginEnd="15dp"
                         android:fontFamily="@font/quicksandbold"
-                        android:text="Mejor puntuación"
+                        android:text="@string/mejor_puntuacion"
                         android:textColor="@color/textGray"
                         android:textSize="17sp" />
 
@@ -174,7 +175,7 @@
                         android:layout_marginTop="5dp"
                         android:layout_marginEnd="15dp"
                         android:fontFamily="@font/quicksandbold"
-                        android:text="Proximos"
+                        android:text="@string/proximos"
                         android:textColor="@color/textGray"
                         android:textSize="17sp" />
 
@@ -231,6 +232,15 @@
 
             <!--    </LinearLayout>-->
 
+            <ImageView
+                android:id="@+id/loading"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/nointernet"
+                android:layout_gravity="center"
+                android:visibility="gone"
+                android:background="#00000000"
+                />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerview1"
@@ -242,7 +252,7 @@
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.0"/>
+                app:layout_constraintVertical_bias="0.0" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -261,7 +271,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_margin="10dp"
-                        android:text="Recomendaciones"
+                        android:text="@string/recomendaciones"
                         android:textColor="@color/black"
                         android:textSize="25sp"
                         android:textStyle="bold" />
@@ -282,7 +292,7 @@
                         android:layout_gravity="center|end"
                         android:layout_margin="15dp"
                         android:gravity="end"
-                        android:text="Ver todo"
+                        android:text="@string/ver_todo"
                         android:textColor="#df6937"
                         android:textSize="25sp"
                         android:textStyle="bold" />
@@ -292,23 +302,24 @@
             </LinearLayout>
 
 
-<!--            <HorizontalScrollView-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_marginEnd="5dp"-->
-<!--                android:layout_marginStart="15dp"-->
-<!--                >-->
+            <!--            <HorizontalScrollView-->
+            <!--                android:layout_width="match_parent"-->
+            <!--                android:layout_height="wrap_content"-->
+            <!--                android:layout_marginEnd="5dp"-->
+            <!--                android:layout_marginStart="15dp"-->
+            <!--                >-->
 
             <LinearLayout
                 android:id="@+id/peli"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:elevation="19dp"
-                android:orientation="horizontal"
-                android:padding="15dp"
+                android:layout_marginHorizontal="8dp"
+                android:layout_marginBottom="50dp"
                 android:background="@drawable/shadown"
-               android:layout_margin="15dp"
-                >
+                android:elevation="6dp"
+                android:orientation="horizontal"
+                android:padding="15dp">
+
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -317,19 +328,18 @@
                     <ImageView
                         android:layout_width="15dp"
                         android:layout_height="151dp"
+                        android:layout_marginEnd="18dp"
                         android:backgroundTint="@color/black"
-                        android:src="@color/activeColor"
-                        android:layout_marginEnd="18dp"/>
+                        android:src="#F8701A" />
                 </LinearLayout>
-
 
 
                 <androidx.cardview.widget.CardView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal|center_vertical"
                     android:orientation="vertical"
                     app:cardCornerRadius="16dp"
-                    android:layout_gravity="center_horizontal|center_vertical"
 
                     >
 
@@ -348,27 +358,27 @@
                     android:layout_height="match_parent"
                     android:orientation="vertical"
 
-                   android:paddingTop="20dp">
+                    android:paddingTop="20dp">
 
                     <TextView
                         android:id="@+id/prueba"
                         android:layout_width="75pt"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="15dp"
-                        android:fontFamily="@font/quicksandbold"
-                        android:text="the jack in the box realse note"
-                        android:textSize="19sp"
                         android:layout_gravity="start"
-                        android:autoSizeTextType="uniform"/>
+                        android:layout_marginStart="15dp"
+                        android:autoSizeTextType="uniform"
+                        android:fontFamily="@font/quicksandbold"
+                        android:text="@string/titulo"
+                        android:textSize="19sp" />
 
                     <TextView
                         android:id="@+id/prueba2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="top"
                         android:layout_marginStart="15dp"
                         android:layout_marginTop="15dp"
                         android:layout_marginEnd="15dp"
-                        android:layout_gravity="top"
                         android:fontFamily="@font/quicksandbold"
                         android:text="Disney Pixar"
                         android:textSize="19sp" />
@@ -379,8 +389,8 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:orientation="vertical"
-                    android:layout_gravity="end">
+                    android:layout_gravity="end"
+                    android:orientation="vertical">
 
 
                     <ImageView
@@ -399,7 +409,7 @@
                         android:layout_gravity="center|center_vertical"
                         android:layout_marginBottom="25dp"
                         android:gravity="center"
-                        android:text="8.1"
+                        android:text="0.0"
                         android:textSize="17sp"
                         android:textStyle="bold" />
 
@@ -408,8 +418,6 @@
             </LinearLayout>
 
             <!--            </HorizontalScrollView>-->
-
-
 
 
         </LinearLayout>
