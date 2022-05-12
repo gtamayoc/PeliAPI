@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">ApiPeliculas</string>
+    <string name="app_name">PeliPoss</string>
     <string name="bienvenida">Bienvenido !</string>
     <string name="buscar_peliculas">Buscar Pelicula</string>
     <string name="popular">Popular</string>
