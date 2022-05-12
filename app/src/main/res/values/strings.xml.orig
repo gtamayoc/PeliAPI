@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">PeliPoss</string>
+<<<<<<< HEAD
+    <string name="bienvenida">Bienvenido !</string>
+    <string name="buscar_peliculas">Buscar Pelicula</string>
+    <string name="popular">Popular</string>
+    <string name="mas_recientes">Más reciente</string>
+    <string name="mejor_puntuacion">Mejor puntuado</string>
+    <string name="proximos">próxima</string>
+    <string name="titulo">título</string>
+    <string name="recomendaciones">Recomendaciones</string>
+    <string name="ver_todo">Ver todo</string>
+=======
+>>>>>>> main
+</resources>
