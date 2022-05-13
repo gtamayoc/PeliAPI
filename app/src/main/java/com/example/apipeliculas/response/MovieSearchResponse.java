@@ -18,11 +18,11 @@ public class MovieSearchResponse {
     @Expose()
     private List<MovieModel> movies;
 
-    public int getTotal_count(){
+    public int getTotal_count() {
         return total_count;
     }
 
-    public List<MovieModel> getMovies(){
+    public List<MovieModel> getMovies() {
         return movies;
     }
 

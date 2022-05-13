@@ -19,7 +19,7 @@ public class MovieRecyclerView extends RecyclerView.Adapter<RecyclerView.ViewHol
     private OnMovieListener onMovieListener;
 
     public MovieRecyclerView(OnMovieListener onMovieListener, List<MovieModel> mMovies) {
-        this.mMovies=mMovies;
+        this.mMovies = mMovies;
         this.onMovieListener = onMovieListener;
     }
 
@@ -32,20 +32,20 @@ public class MovieRecyclerView extends RecyclerView.Adapter<RecyclerView.ViewHol
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
-        ((MovieViewHolder)holder).title.setText(mMovies.get(position).getTitle());
-        ((MovieViewHolder)holder).release_date.setText(mMovies.get(position).getRelease_date());
-        ((MovieViewHolder)holder).duration.setText(mMovies.get(position).getOriginal_language());
-        ((MovieViewHolder)holder).ratingBar.setRating((mMovies.get(position).getVote_average())/2);
+        ((MovieViewHolder) holder).title.setText(mMovies.get(position).getTitle());
+        ((MovieViewHolder) holder).release_date.setText(mMovies.get(position).getRelease_date());
+        ((MovieViewHolder) holder).duration.setText(mMovies.get(position).getOriginal_language());
+        ((MovieViewHolder) holder).ratingBar.setRating((mMovies.get(position).getVote_average()) / 2);
 
         Glide.with(holder.itemView.getContext())
                 .load(mMovies.get(position).getPoster_path())
-                .into(((MovieViewHolder)holder).imageView);
+                .into(((MovieViewHolder) holder).imageView);
 
     }
 
     @Override
     public int getItemCount() {
-        if(mMovies !=null){
+        if (mMovies != null) {
             return mMovies.size();
         }
         return 0;

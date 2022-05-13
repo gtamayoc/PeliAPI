@@ -7,15 +7,12 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.bumptech.glide.Glide;
 import com.example.apipeliculas.models.MovieModel;
 import com.example.apipeliculas.utils.MovieFunctions;
-
-import java.text.SimpleDateFormat;
 
 public class MovieDescription extends AppCompatActivity {
 
@@ -47,15 +44,15 @@ public class MovieDescription extends AppCompatActivity {
         Bundle bundle = getIntent().getExtras();
         page = bundle.getInt("page");
         tipoBusqueda = bundle.getInt("tipoBusquedar");
-        busqueda= bundle.getString("busqueda");
+        busqueda = bundle.getString("busqueda");
         MovieModel movieModel = getIntent().getParcelableExtra("MovieElement");
         title.setText(movieModel.getTitle());
         String sCadena = MovieFunctions.ordenarFecha(movieModel.getRelease_date());
         String overview = movieModel.getOverview();
         date.setText(sCadena);
-        if(overview.isEmpty()){
+        if (overview.isEmpty()) {
             description.setText("Descripcion No Disponible");
-        }else{
+        } else {
             description.setText(movieModel.getOverview());
         }
 
@@ -77,32 +74,30 @@ public class MovieDescription extends AppCompatActivity {
         }
 
 
+        btnBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                moveToInicio();
+            }
+        });
 
-            btnBack.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    moveToInicio();
-                }
-            });
-
-
-        
 
     }
-    public void moveToInicio(){
+
+    public void moveToInicio() {
         Intent intent = new Intent(MovieDescription.this, MovieListActivity.class);
         intent.putExtra("cargar", cargar);
         intent.putExtra("page", page);
         intent.putExtra("tipoBusquedar", tipoBusqueda);
-        intent.putExtra("busqueda", ""+busqueda);
+        intent.putExtra("busqueda", "" + busqueda);
         startActivity(intent);
         finish();
     }
 
     @Override
     public void onBackPressed() {
-            super.onBackPressed();
-            moveToInicio();
+        super.onBackPressed();
+        moveToInicio();
 
     }
 }

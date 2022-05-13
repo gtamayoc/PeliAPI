@@ -6,8 +6,6 @@ import android.net.NetworkInfo;
 
 import androidx.annotation.NonNull;
 
-import java.io.IOException;
-
 public class MovieInternet {
 
 

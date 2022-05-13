@@ -1,11 +1,11 @@
 package com.example.apipeliculas;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 
 public class MoviePerfil extends AppCompatActivity {
@@ -27,7 +27,7 @@ public class MoviePerfil extends AppCompatActivity {
         });
     }
 
-    public void moveToInicio(){
+    public void moveToInicio() {
         Intent intent = new Intent(MoviePerfil.this, MovieListActivity.class);
         startActivity(intent);
         finish();

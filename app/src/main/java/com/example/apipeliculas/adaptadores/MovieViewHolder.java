@@ -13,7 +13,7 @@ import com.example.apipeliculas.R;
 public class MovieViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
 
-    TextView title, release_date, duration,calificacion;
+    TextView title, release_date, duration, calificacion;
     ImageView imageView;
     RatingBar ratingBar;
 
