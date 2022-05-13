@@ -10,4 +10,8 @@
     <string name="titulo">title</string>
     <string name="recomendaciones">Recommendations</string>
     <string name="ver_todo">Sell all</string>
+    <string name="nombre_usuario">User Name</string>
+    <string name="nombre_apellido">Names and surnames</string>
+    <string name="telefono">telephonee</string>
+    <string name="ocupacion">Systems engineer student</string>
 </resources>

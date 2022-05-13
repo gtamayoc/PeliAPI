@@ -95,7 +95,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="nombre de usuario"
+            android:text="@string/nombre_usuario"
             android:textSize="15sp"
             android:layout_marginBottom="5dp"
             />
@@ -113,7 +113,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="nombre"
+            android:text="nombres y apellidos"
             android:textSize="15sp"
             android:layout_marginTop="15dp"
             android:layout_marginBottom="5dp"
@@ -130,7 +130,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="telefono"
+            android:text="@string/telefono"
             android:textSize="15sp"
             android:layout_marginTop="15dp"
             android:layout_marginBottom="5dp"
@@ -150,12 +150,12 @@
             android:text="ocupación"
             android:textSize="15sp"
             android:layout_marginTop="15dp"
-            android:layout_marginBottom="5dp"
+            android:layout_marginBottom="15dp"
             />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Estudiante de ingenieria de sistemas"
+            android:text="@string/ocupacion"
             android:textSize="20sp"
             android:textColor="@color/black"
             android:textAlignment="center"

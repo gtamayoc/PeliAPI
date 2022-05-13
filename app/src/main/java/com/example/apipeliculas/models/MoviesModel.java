@@ -69,47 +69,6 @@ public class MoviesModel implements MovieInterface.model {
     }
 
     @Override
-    public void descargarPeliculasTop() {
-        MovieApi movieApi = Service.getMovieApi();
-        Call<MovieSearchResponse> responseCall;
-        responseCall = movieApi
-                .searchMovie3(Credenciales.API_KEY,
-                        "es");
-
-        this.presenter.mostrarPeliculas(responseCall);
-    }
-
-    @Override
-    public void descargarPeliculasUltimos() {
-        MovieApi movieApi = Service.getMovieApi();
-        Call<MovieSearchResponse> responseCall;
-        responseCall = movieApi
-                .searchMovie6(Credenciales.API_KEY,
-                        "es");
-        this.presenter.mostrarPeliculas(responseCall);
-    }
-
-
-    @Override
-    public void descargarPeliculasProximos() {
-        MovieApi movieApi = Service.getMovieApi();
-        Call<MovieSearchResponse> responseCall;
-        responseCall = movieApi
-                .searchMovie4(Credenciales.API_KEY,
-                        "es");
-
-        this.presenter.mostrarPeliculas(responseCall);
-    }
-
-
-    @Override
-    public void descargarPeliculasId(int id) {
-        MovieApi movieApi = Service.getMovieApi();
-        Call<MovieModel> responseCall = movieApi.getMovie(id, Credenciales.API_KEY);
-        this.presenter.mostrarPeliculasId(responseCall);
-    }
-
-    @Override
     public void descargarPeliculasTipoPage(int page, int tipoBusqueda) {
         MovieApi movieApi = Service.getMovieApi();
         Call<MovieSearchResponse> responseCall;

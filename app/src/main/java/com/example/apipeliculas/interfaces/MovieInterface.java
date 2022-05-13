@@ -20,9 +20,9 @@ public interface MovieInterface {
 
         void ultimaPelicula(List<MovieModel> movies);
 
-        void configureRecyclerView1(List<MovieModel> movies);
+        void configureRecyclerViewMostrarPeliculas(List<MovieModel> movies);
 
-        void configureRecyclerView2(List<MovieModel> movies);
+        void configureRecyclerViewMostrarPeliculasPopular(List<MovieModel> movies);
 
         void recyclerBusqueda(List<MovieModel> movies);
 
@@ -30,29 +30,16 @@ public interface MovieInterface {
     }
 
     interface presenter {
-        void obtenerPeliculas(String nombre, String page);
 
         void buscarPeliculas(String nombre, int page);
-
-        void buscarPeliculasDiscover();
 
         void buscarPeliculasPopular();
 
         void buscarPeliculasPopularPage(int page, int tipoBusqueda);
 
-        void buscarPeliculasTop();
-
-        void buscarPeliculasProximos();
-
-        void buscarPeliculasUltimos();
-
-        void obtenerPeliculasId(int id);
-
         void mostrarPeliculasPopular(@NonNull Call<MovieSearchResponse> responseCall);
 
         void mostrarPeliculas(Call<MovieSearchResponse> responseCall);
-
-        void mostrarPeliculasBusqueda(Call<MovieSearchResponse> responseCall);
 
         void mostrarPeliculasId(Call<MovieModel> responseCall);
 
@@ -66,14 +53,6 @@ public interface MovieInterface {
         void descargarPeliculasDiscover();
 
         void descargarPeliculasPopular();
-
-        void descargarPeliculasTop();
-
-        void descargarPeliculasUltimos();
-
-        void descargarPeliculasProximos();
-
-        void descargarPeliculasId(int id);
 
         void descargarPeliculasTipoPage(int page, int tipoBusqueda);
     }

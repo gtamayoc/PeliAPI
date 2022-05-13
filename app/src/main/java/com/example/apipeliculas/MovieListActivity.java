@@ -27,7 +27,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.apipeliculas.adaptadores.AdapterDatos;
-import com.example.apipeliculas.adaptadores.MovieRecyclerView;
 import com.example.apipeliculas.adaptadores.OnMovieListener;
 import com.example.apipeliculas.interfaces.MovieInterface;
 import com.example.apipeliculas.models.MovieModel;
@@ -48,15 +47,21 @@ public class MovieListActivity extends AppCompatActivity implements MovieInterfa
     private static final long TIEMPO_MINIMO = 900;
     private static final long TIEMPO_MINIMO2 = 3500;
     private long ultimoClick = 0;
-    private RecyclerView recyclerView, recyclerView1;
-    private MovieRecyclerView movieRecyclerView;
+    private RecyclerView recyclerView;
     boolean aptoParaCargar = true;
     boolean cargar = true;
-    TextView textViewPopular, textViewRecientes, textViewPuntuacion, textViewProximos, textViewUltimos, textView, textViewStarts, textViewVerTodo;
-    SearchView search, search1;
+    TextView textViewPopular;
+    TextView textViewRecientes;
+    TextView textViewPuntuacion;
+    TextView textViewProximos;
+    TextView textView;
+    TextView textViewVerTodo;
+    TextView textViewStarts;
+    SearchView search;
     ImageView imageView;
     LinearLayout linearLayout;
-    AdapterDatos adapterDatos, adapterDatos1, adapterDatosBusqueda;
+    AdapterDatos adapterDatos;
+    AdapterDatos adapterDatosBusqueda;
     String busqueda;
     ImageButton buttonPerfil;
     MovieInterface.presenter presenter;
@@ -69,8 +74,8 @@ public class MovieListActivity extends AppCompatActivity implements MovieInterfa
         setContentView(layout.activity_main);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
         presenter = new MoviePresenter(this);
-        recyclerView1 = findViewById(R.id.recyclerview1);
-        recyclerView1.setLayoutManager(layoutManager);
+        recyclerView = findViewById(R.id.recyclerview1);
+        recyclerView.setLayoutManager(layoutManager);
         textViewPopular = findViewById(R.id.textViewPopular);
         textViewRecientes = findViewById(R.id.textViewRecientes);
         textViewPuntuacion = findViewById(R.id.textViewMejorPuntuación);
@@ -80,7 +85,7 @@ public class MovieListActivity extends AppCompatActivity implements MovieInterfa
         textViewStarts = findViewById(R.id.stars);
         linearLayout = findViewById(R.id.peli);
         textViewVerTodo = findViewById(R.id.verTodo);
-        recyclerView1.setLayoutManager(layoutManager);
+        recyclerView.setLayoutManager(layoutManager);
         search = (SearchView) findViewById(R.id.search);
         buttonPerfil = findViewById(R.id.perfil);
         loading = findViewById(R.id.loading);
@@ -111,13 +116,11 @@ public class MovieListActivity extends AppCompatActivity implements MovieInterfa
             imprimir(tipoBusqueda);
         }
 
-        recyclerView1.addOnScrollListener(new RecyclerView.OnScrollListener() {
+        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
                 super.onScrolled(recyclerView, dx, dy);
                 if (dx < 0) {
-                    int visibleItemCount1 = layoutManager.getChildCount();
-                    int totalItemCount1 = layoutManager.getItemCount();
                     int pastVisitables1 = layoutManager.findLastVisibleItemPosition();
                     if (aptoParaCargar && pastVisitables1 == 2) {
                         if (page == 1) {
@@ -339,12 +342,12 @@ public class MovieListActivity extends AppCompatActivity implements MovieInterfa
         });
 
         ultimaPelicula(movies);
-        recyclerView1.setAdapter(adapterDatos);
+        recyclerView.setAdapter(adapterDatos);
     }
 
 
     @Override
-    public void configureRecyclerView2(List<MovieModel> movies) {
+    public void configureRecyclerViewMostrarPeliculasPopular(List<MovieModel> movies) {
         adapterDatos = new AdapterDatos(movies, this, new AdapterDatos.OnItemClickListener() {
             @Override
             public void onItemClick(MovieModel item) {
@@ -355,12 +358,12 @@ public class MovieListActivity extends AppCompatActivity implements MovieInterfa
         });
         adapterDatos.agregar(movies);
         ultimaPelicula(movies);
-        recyclerView1.setAdapter(adapterDatos);
+        recyclerView.setAdapter(adapterDatos);
 
     }
 
     @Override
-    public void configureRecyclerView1(List<MovieModel> movies) {
+    public void configureRecyclerViewMostrarPeliculas(List<MovieModel> movies) {
         adapterDatos = new AdapterDatos(movies, this, new AdapterDatos.OnItemClickListener() {
             @Override
             public void onItemClick(MovieModel item) {
@@ -368,7 +371,7 @@ public class MovieListActivity extends AppCompatActivity implements MovieInterfa
             }
         });
         adapterDatos.agregar(movies);
-        recyclerView1.setAdapter(adapterDatos);
+        recyclerView.setAdapter(adapterDatos);
         ultimaPelicula(movies);
     }
 
@@ -399,7 +402,7 @@ public class MovieListActivity extends AppCompatActivity implements MovieInterfa
                 moveToDescription(item);
             }
         });
-        recyclerView1.setAdapter(adapterDatosBusqueda);
+        recyclerView.setAdapter(adapterDatosBusqueda);
 
     }
 
@@ -417,7 +420,7 @@ public class MovieListActivity extends AppCompatActivity implements MovieInterfa
                 moveToDescription(item);
             }
         });
-        recyclerView1.setAdapter(adapterDatos);
+        recyclerView.setAdapter(adapterDatos);
     }
 
     @SuppressLint("SetTextI18n")
@@ -501,18 +504,18 @@ public class MovieListActivity extends AppCompatActivity implements MovieInterfa
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                metodoEjecutar();//llamamos nuestro metodo
-                handler.postDelayed(this, 100);//se ejecutara cada 1 segundos
+                metodoEjecutar();
+                handler.postDelayed(this, 100);
             }
-        }, 100);//empezara a ejecutarse después de 1 milisegundos
+        }, 100);
     }
 
     private void metodoEjecutar() {
         if (MovieInternet.OnLine(this)) {
-            recyclerView1.setVisibility(View.VISIBLE);
+            recyclerView.setVisibility(View.VISIBLE);
             loading.setVisibility(View.GONE);
         } else {
-            recyclerView1.setVisibility(View.GONE);
+            recyclerView.setVisibility(View.GONE);
             loading.setVisibility(View.VISIBLE);
         }
     }

@@ -10,5 +10,8 @@
     <string name="titulo">título</string>
     <string name="recomendaciones">Recomendaciones</string>
     <string name="ver_todo">Ver todo</string>
-
+    <string name="nombre_usuario">Nombre de usuario</string>
+    <string name="nombre_apellido">Nombres y apellidos</string>
+    <string name="telefono">teléfono</string>
+    <string name="ocupacion">Estudiante de ingenieria de sistemas</string>
 </resources>
