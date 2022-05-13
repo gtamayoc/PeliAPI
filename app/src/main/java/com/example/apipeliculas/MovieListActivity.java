@@ -304,7 +304,7 @@ public class MovieListActivity extends AppCompatActivity implements MovieInterfa
         } else if (tipoBusqueda == 5) {
             presenter.buscarPeliculas("" + busqueda, page);
         } else {
-            Toast.makeText(MovieListActivity.this, "Error Tipo de Usuario", Toast.LENGTH_SHORT).show();
+            Toast.makeText(MovieListActivity.this, "Error Tipo de busqueda", Toast.LENGTH_SHORT).show();
         }
 
     }

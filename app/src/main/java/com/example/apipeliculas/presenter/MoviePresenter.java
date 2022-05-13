@@ -58,7 +58,7 @@ public class MoviePresenter implements MovieInterface.presenter {
 
                     }
                 } else {
-                    String respuesta = "hay un error en la descarga del recurso : " + response.code();
+                    String respuesta = "hay un error en la descarga del recurso :" + response.code();
                     view.errorCarga(respuesta);
                 }
 
