@@ -64,7 +64,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="end"
-                        android:layout_margin="25sp"
+                        android:layout_margin="25dp"
                         android:background="@color/white"
                         android:src="@drawable/ic_baseline_person_outline_24" />
                 </LinearLayout>
@@ -72,28 +72,31 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:layout_marginHorizontal="10dp"
+                >
+
 
                 <LinearLayout
-                    android:layout_width="wrap_content"
+                    android:layout_width="145pt"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    android:layout_gravity="start">
 
                     <SearchView
                         android:id="@+id/search"
-                        android:layout_width="140pt"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="end"
-                        android:layout_marginStart="25dp"
+                        android:layout_gravity="start"
                         android:background="@drawable/navbar"
-                        android:backgroundTint="#EDE0FF"
+                        android:backgroundTint="#F9F4FF"
                         android:goIcon="@drawable/ic_baseline_star_24"
-                        android:queryHint="Buscar Peliculas" />
+                        android:queryHint="Buscar Peliculas"/>
 
 
                 </LinearLayout>
-
 
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -107,7 +110,6 @@
                         android:layout_gravity="end"
                         android:background="@drawable/values"
                         android:src="@drawable/iconnotifi23"
-
                         />
 
                 </LinearLayout>
@@ -133,6 +135,7 @@
                     >
 
                     <TextView
+                        android:clickable="true"
                         android:id="@+id/textViewPopular"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -144,6 +147,7 @@
                         android:textSize="19sp" />
 
                     <TextView
+                        android:clickable="true"
                         android:id="@+id/textViewRecientes"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -156,6 +160,7 @@
                         android:textSize="17sp" />
 
                     <TextView
+                        android:clickable="true"
                         android:id="@+id/textViewMejorPuntuación"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -168,6 +173,7 @@
                         android:textSize="17sp" />
 
                     <TextView
+                        android:clickable="true"
                         android:id="@+id/textViewProximos"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -243,7 +249,7 @@
                     android:layout_gravity="center"
                     android:background="#00000000"
                     android:src="@drawable/nointernet"
-                    android:visibility="visible" />
+                    android:visibility="gone" />
 
 
             </LinearLayout>
@@ -258,7 +264,8 @@
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.0" />
+                app:layout_constraintVertical_bias="0.0"
+                android:visibility="visible"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -351,10 +358,10 @@
 
                     <ImageView
                         android:id="@+id/movie_image_view1"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
+                        android:layout_width="108dp"
+                        android:layout_height="108dp"
                         android:scaleType="centerCrop"
-                        android:src="@drawable/ic_launcher_background" />
+                        android:src="@drawable/noimage" />
 
                 </androidx.cardview.widget.CardView>
 
@@ -367,18 +374,17 @@
                     android:paddingTop="20dp">
 
                     <TextView
-                        android:id="@+id/prueba"
+                        android:id="@+id/titulo"
                         android:layout_width="75pt"
                         android:layout_height="wrap_content"
                         android:layout_gravity="start"
                         android:layout_marginStart="15dp"
-                        android:autoSizeTextType="uniform"
                         android:fontFamily="@font/quicksandbold"
                         android:text="@string/titulo"
                         android:textSize="19sp" />
 
                     <TextView
-                        android:id="@+id/prueba2"
+                        android:id="@+id/productor"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="top"

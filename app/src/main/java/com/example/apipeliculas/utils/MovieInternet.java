@@ -14,13 +14,26 @@ public class MovieInternet {
         NetworkInfo ni;
         cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
         ni = cm.getActiveNetworkInfo();
-        if (ni != null && ni.isConnected()) {
-            return true;
+        return ni != null && ni.isConnected();
 
-        } else {
-            return false;
+    }
+
+    public static boolean OnLine1(@NonNull Context context) {
+        ConnectivityManager connectivityManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
+
+        return networkInfo != null && networkInfo.isConnectedOrConnecting();
+    }
+
+    public static boolean OnLine3(@NonNull Context context) {
+        ConnectivityManager connectivityManager =
+                (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+        if (connectivityManager != null) {
+            NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
+            if (networkInfo != null)
+                return networkInfo.isConnected();
         }
-//
+        return false;
     }
 
 

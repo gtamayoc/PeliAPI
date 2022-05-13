@@ -149,7 +149,7 @@ public class AdapterDatos extends RecyclerView.Adapter<AdapterDatos.ViewHolderDa
             cv = itemView.findViewById(R.id.cardView);
             imageView = itemView.findViewById(R.id.movie_image_view);
             calificacion = itemView.findViewById(R.id.stars);
-            title = itemView.findViewById(R.id.prueba);
+            title = itemView.findViewById(R.id.titulo);
 
         }
 

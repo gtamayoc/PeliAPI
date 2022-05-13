@@ -41,6 +41,7 @@ public class MovieListActivity extends AppCompatActivity implements MovieInterfa
 
 
     int id;
+    int wifi=1;
     int page = 1;
     int tipoBusqueda = 1;
     public List<MovieModel> mMovies1;
@@ -54,9 +55,11 @@ public class MovieListActivity extends AppCompatActivity implements MovieInterfa
     TextView textViewRecientes;
     TextView textViewPuntuacion;
     TextView textViewProximos;
-    TextView textView;
+    TextView titulo;
     TextView textViewVerTodo;
     TextView textViewStarts;
+    TextView productor;
+    TextView starts;
     SearchView search;
     ImageView imageView;
     LinearLayout linearLayout;
@@ -67,6 +70,7 @@ public class MovieListActivity extends AppCompatActivity implements MovieInterfa
     MovieInterface.presenter presenter;
     ImageView loading;
     Context context = this;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,7 +84,7 @@ public class MovieListActivity extends AppCompatActivity implements MovieInterfa
         textViewRecientes = findViewById(R.id.textViewRecientes);
         textViewPuntuacion = findViewById(R.id.textViewMejorPuntuación);
         textViewProximos = findViewById(R.id.textViewProximos);
-        textView = findViewById(R.id.prueba);
+        titulo = findViewById(R.id.titulo);
         imageView = findViewById(R.id.movie_image_view1);
         textViewStarts = findViewById(R.id.stars);
         linearLayout = findViewById(R.id.peli);
@@ -89,7 +93,9 @@ public class MovieListActivity extends AppCompatActivity implements MovieInterfa
         search = (SearchView) findViewById(R.id.search);
         buttonPerfil = findViewById(R.id.perfil);
         loading = findViewById(R.id.loading);
-
+        titulo = findViewById(R.id.titulo);
+        productor = findViewById(R.id.productor);
+        starts = findViewById(R.id.stars);
 
         id = 65;
 
@@ -253,7 +259,7 @@ public class MovieListActivity extends AppCompatActivity implements MovieInterfa
 
 
     public void apariencia(int tipoBusqueda) {
-        if (MovieInternet.OnLine(this)) {
+        if (MovieInternet.OnLine3(this)) {
             if (tipoBusqueda == 1) {
                 textViewPopular.setTextAppearance(MovieListActivity.this, style.active);
                 textViewRecientes.setTextAppearance(MovieListActivity.this, style.normal);
@@ -432,7 +438,7 @@ public class MovieListActivity extends AppCompatActivity implements MovieInterfa
         String votoString = Float.toString(voto);
         textViewStarts.setText(votoString);
 
-        textView.setText(mMovies.get(i).getTitle() + " (" + sSubCadena + ")");
+        titulo.setText(mMovies.get(i).getTitle() + " (" + sSubCadena + ")");
 
         if (mMovies.get(i).getPoster_path() == null) {
             Glide.with(this)
@@ -452,11 +458,11 @@ public class MovieListActivity extends AppCompatActivity implements MovieInterfa
                 if (SystemClock.elapsedRealtime() - ultimoClick < TIEMPO_MINIMO2) {
                     return;
                 }
-                if (MovieInternet.OnLine(context)) {
+                if (MovieInternet.OnLine3(context)) {
                     MovieModel model = mMovies.get(0);
                     moveToDescription(model);
                 } else {
-                    Toast.makeText(context, "No tienes acceso a internet", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context, "No tienes acceso a internet ", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -511,12 +517,24 @@ public class MovieListActivity extends AppCompatActivity implements MovieInterfa
     }
 
     private void metodoEjecutar() {
-        if (MovieInternet.OnLine(this)) {
+
+        if (MovieInternet.OnLine3(context)) {
             recyclerView.setVisibility(View.VISIBLE);
             loading.setVisibility(View.GONE);
+            if(wifi==0){
+                wifi=1;
+                imprimir(tipoBusqueda);
+            }else{
+
+            }
         } else {
             recyclerView.setVisibility(View.GONE);
             loading.setVisibility(View.VISIBLE);
+            imageView.setImageDrawable(getDrawable(R.drawable.noimage));
+            titulo.setText("Titulo");
+            productor.setText(("Disney Pixar"));
+            starts.setText("0.0");
+            wifi=0;
         }
     }
 

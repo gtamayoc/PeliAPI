@@ -20,7 +20,7 @@ public class MoviePresenter implements MovieInterface.presenter {
 
     MovieInterface.model model;
     MovieInterface.view view;
-
+    String Error="Hay un error en la descarga del recurso, intentar de nuevo";
 
     public MoviePresenter(MovieInterface.view view) {
         this.model = new MoviesModel(this);
@@ -58,7 +58,7 @@ public class MoviePresenter implements MovieInterface.presenter {
 
                     }
                 } else {
-                    String respuesta = "hay un error en la descarga del recurso :" + response.code();
+                    String respuesta = Error+ "1";
                     view.errorCarga(respuesta);
                 }
 
@@ -66,7 +66,7 @@ public class MoviePresenter implements MovieInterface.presenter {
 
             @Override
             public void onFailure(Call<MovieSearchResponse> call, Throwable t) {
-                String respuesta = "hay un error en la descarga del recurso : " + t.getMessage();
+                String respuesta = Error+ "1";
                 view.errorCarga(respuesta);
                 Log.e("TAG2-ERRO4", "the response " + t.getMessage());
             }
@@ -89,11 +89,12 @@ public class MoviePresenter implements MovieInterface.presenter {
 
                     }
                 } else {
-                    String respuesta = "hay un error en la descarga del recurso : " + response.code();
+                    String respuesta = Error + "1";
                     view.errorCarga(respuesta);
                 }
 
             }
+
 
             @Override
             public void onFailure(Call<MovieSearchResponse> call, Throwable t) {
@@ -117,7 +118,7 @@ public class MoviePresenter implements MovieInterface.presenter {
 
                     }
                 } else {
-                    String respuesta = "hay un error en la descarga del recurso : " + response.code();
+                    String respuesta = Error;
                     view.errorCarga(respuesta);
                 }
             }
